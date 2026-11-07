@@ -1,0 +1,59 @@
+# ACME GLOBAL TECHNOLOGIES - ENTERPRISE SYSTEM ARCHITECTURE OVERVIEW
+Document Reference: ARCH-SPEC-2025-002
+Effective Date: January 1, 2025
+Author: Michael Rodriguez, Chief Technology Officer & Principal Architecture Council
+Classification: Internal Engineering Specification
+
+## 1. Executive Architecture Summary
+Acme Global Technologies delivers a resilient, cloud-native enterprise intelligence and knowledge management platform. Designed for high concurrency, low latency, and zero single-point-of-failure operation, the system is hosted entirely on Amazon Web Services (AWS) across multiple Availability Zones (AZs) in our primary production region (`us-east-1`, Northern Virginia), with a warm-standby disaster recovery presence in `us-west-2` (Oregon). The architecture provides a production Service Level Agreement (SLA) commitment of 99.9% uptime (three nines), representing no more than 43.8 minutes of unplanned downtime per calendar month.
+
+## 2. Microservices Architecture on AWS EKS
+All backend computing workloads run as containerized microservices managed by Amazon Elastic Kubernetes Service (AWS EKS):
+- Cluster Topology: Production EKS clusters utilize managed node groups provisioned across three discrete Availability Zones (AZ-a, AZ-b, AZ-c) with heterogeneous instance types (mix of `m6i.2xlarge` and AWS Graviton `c7g.2xlarge` instances for compute-intensive workloads).
+- Autoscaling & Ingress: Ingress traffic is managed via AWS Network Load Balancers (NLBs) routing to Kong Enterprise API Gateway. Pod autoscaling is governed by Kubernetes Horizontal Pod Autoscaler (HPA) leveraging custom Prometheus metrics (CPU utilization > 65% or request latency > 250ms), and cluster nodes scale dynamically via Karpenter.
+- Service Mesh: Istio service mesh enforces mutual TLS (mTLS) with SPIFFE/SPIRE cryptographic identities for all inter-pod traffic, service-to-service authorization policies, and distributed traffic shaping.
+
+## 3. Asynchronous Event Streaming with Apache Kafka
+Asynchronous communication, document ingestion events, audit logging, and cross-service data propagation are powered by Confluent Cloud managed Apache Kafka:
+- Event Backbone Topics:
+  * `document.ingested.v1`: Emitted upon successful upload and parsing of new enterprise files.
+  * `document.chunked.v1`: Carries chunk payloads and vector indexing tasks to Qdrant workers.
+  * `rag.query.completed.v1`: Logs queries, retrieved contexts, and generation metrics for evaluation.
+  * `audit.security.events.v1`: Encrypted trail of administrative logins and data access events.
+- Partitioning and Durability: High-throughput topics are provisioned with twelve (12) partitions and a replication factor of three (RF=3) with `min.insync.replicas=2` and `acks=all` to guarantee zero message loss during cluster rebalances. Retention is configured for fourteen (14) days.
+
+## 4. Storage Architecture and Database Tiering
+Acme employs a purpose-fit polyglot persistence strategy tailored to distinct workload profiles:
+- Relational Core Database (Amazon Aurora PostgreSQL):
+  * Engine: PostgreSQL 16-compatible Aurora Serverless v2 with Multi-AZ automated failover.
+  * Purpose: Serves as the primary system of record for user profiles, organizations, permission matrices, billing subscriptions, document metadata records, and audit logs.
+  * Scalability: Configured with one primary read-write instance and two auto-scaling read replicas distributed across AZs with read replica lag maintained below 15ms.
+- Distributed In-Memory Cache (Amazon ElastiCache for Redis):
+  * Engine: Redis Cluster 7.2 with in-transit and at-rest encryption.
+  * Purpose: Session state caching, distributed locks (Redlock algorithm), rate-limiting counters (token bucket), and hot semantic query response caching. Cache expiration defaults to TTL of 3600 seconds.
+- Enterprise Search Engine (Elasticsearch / OpenSearch):
+  * Purpose: Full-text lexical search, exact keyword matching, metadata filtering, and BM25 hybrid ranking over document catalogs.
+  * Configuration: Three dedicated master nodes and six data nodes with cross-cluster search capabilities.
+- Specialized Vector Store (Qdrant Enterprise):
+  * Purpose: Dense vector embedding similarity indexing for semantic RAG retrieval.
+  * Vector Configuration: 768-dimensional vectors (Nomic / Llama embeddings), Cosine similarity distance, HNSW index with `m=16`, `ef_construct=128`.
+
+## 5. API Gateway Layer (Kong Enterprise)
+The Kong Enterprise API Gateway sits at the perimeter of the microservices topology, performing critical ingress functions:
+- Rate Limiting and Quota Enforcement: Dynamic token-bucket rate limiting based on client API tiers (e.g., Standard: 60 req/min; Enterprise: 600 req/min).
+- Authentication and Token Introspection: Validates JWT access tokens, verifies HMAC signatures, and interfaces with Okta OAuth2 authorization servers.
+- Request Routing and Transformation: Translates public REST endpoints to internal gRPC microservice invocations and enforces CORS headers and TLS termination.
+
+## 6. Observability, Telemetry, and Monitoring (Datadog & OpenTelemetry)
+Full-stack observability is implemented across three core pillars:
+- Distributed Tracing: Standardized on OpenTelemetry (OTel) instrumentation SDKs. Trace spans correlate HTTP ingress, gateway hops, microservice invocations, Kafka producer/consumer lags, and database query timings.
+- Metrics Collection: Prometheus endpoints are scraped by Datadog Agents running as DaemonSets on every Kubernetes node. Key dashboards monitor Golden Signals: Latency, Traffic, Errors, and Saturation.
+- Centralized Logging: Structured JSON logs emitted to `stdout` are parsed, indexed, and retained in Datadog Log Management for 30 days, with long-term cold archives directed to AWS S3 Glacier.
+
+## 7. Disaster Recovery (DR) and Business Continuity
+Acme maintains a comprehensive Disaster Recovery and Business Continuity Plan tested bi-annually:
+- Recovery Point Objective (RPO): Capped at 1 hour (maximum acceptable data loss in catastrophic disaster). Automated continuous Aurora storage volume snapshots and Kafka multi-region topic mirrors ensure data currency within minutes.
+- Recovery Time Objective (RTO): Capped at 4 hours (maximum allowable duration to fully restore production services in secondary region `us-west-2`).
+- Failover Automation: Route 53 DNS failover routing health checks trigger secondary region warm-standby cluster scaling, re-pointing ingress DNS records within 15 minutes of manual executive authorization.
+
+For technical deep dives or architectural RFC submissions, contact the Principal Architecture Council at architecture@acmeglobal.com.

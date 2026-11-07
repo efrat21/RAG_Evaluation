@@ -1,0 +1,57 @@
+# ACME GLOBAL TECHNOLOGIES - SOFTWARE PROCUREMENT AND REQUEST GUIDE
+Standard Operating Procedure: SOP-IT-2025-012
+Effective Date: January 10, 2025
+Managed by: IT Procurement & Vendor Operations
+Portal: https://it.service.acmeglobal.com
+
+## 1. Overview and Procurement Principles
+Acme Global Technologies equips employees with modern, reliable, and secure software applications to maximize engineering output and operational excellence. To ensure fiscal responsibility, data security, license compliance, and enterprise architectural coherence, all software purchases, free open-source enterprise tiers, trial subscriptions, and seat licenses must be formally requested and provisioned through our centralized IT Service Portal. Unauthorized purchases via personal credit cards or unapproved expensing of SaaS licenses will not be reimbursed by Accounts Payable.
+
+## 2. Standard Pre-Approved Software Catalog
+Acme maintains enterprise licenses for a broad catalog of tools. Requests for pre-approved catalog tools are typically provisioned within four (4) business hours via automated Okta group assignment without requiring special budget approval:
+- Productivity & Collaboration: Microsoft Office 365 Enterprise E5 suite (Word, Excel, PowerPoint, Outlook, OneDrive), Google Workspace Business Plus, Slack Enterprise Grid, Zoom Business Pro.
+- Project & Knowledge Management: Atlassian Jira Software, Atlassian Confluence Cloud, Notion Team Workspace, Miro Enterprise.
+- Engineering & Development: GitHub Enterprise Cloud, Docker Desktop Enterprise, JetBrains All Products Pack (IntelliJ IDEA, PyCharm, GoLand), Visual Studio Code (corporate profile), Postman Enterprise.
+- Cloud Infrastructure & Hosting: Amazon Web Services (AWS) Developer Sandbox accounts with budget guardrails, Datadog Infrastructure Monitoring, Sentry Error Tracking, Terraform Cloud.
+- Design & Marketing: Figma Enterprise, Adobe Creative Cloud All Apps (role-based entitlement).
+
+To request an additional license seat for any catalog tool, navigate to https://it.service.acmeglobal.com/catalog, locate the desired tool tile, and click "Request Seat".
+
+## 3. Request Workflow for Non-Catalog Software
+When your squad or team requires new software, specialized SaaS subscriptions, or AI/ML evaluation licenses not currently included in the standard catalog, adhere to the following end-to-end procurement process:
+
+### Step 1: Submit a Software Procurement Ticket
+Visit https://it.service.acmeglobal.com and select "New Software Procurement Request". Complete the required fields:
+- Application Name and Vendor URL.
+- Business Justification: Detailed explanation of the technical problem or operational gap this tool solves.
+- Estimated Users / Seat Count: Initial team size requiring access and expected 12-month growth.
+- Total Annual Contract Value (ACV) or monthly recurring expense.
+- Data Sensitivity: Specify if the software will ingest, process, or store customer PII, source code, financial records, or credentials.
+
+### Step 2: Security & Architecture Review
+Any new software interacting with company data must undergo vetting by InfoSec and Enterprise Architecture:
+- SOC 2 Type II or ISO 27001 Certification: The vendor must provide current independent third-party audit reports.
+- Data Processing Addendum (DPA): Mandatory for tools handling personal data under GDPR/CCPA.
+- Single Sign-On (SSO): The software must support SAML 2.0 / SCIM protocol for automated provisioning and de-provisioning via Okta.
+
+### Step 3: Financial Authorization Thresholds
+Software expenditures are routed dynamically through our approval hierarchy based on Total Annual Cost:
+- Under $500 Annual Cost (Auto-Approve Tier): Software requests below $500/year (or one-time developer utility licenses under $500) are automatically approved within 24 hours upon completion of automated security vulnerability scanning. No department head sign-off is required.
+- $500 to $5,000 Annual Cost (Manager + IT Tier): Requires two-stage authorization:
+  1. Direct Squad Manager approval confirming cost center budget allocation.
+  2. IT Infrastructure Director approval verifying non-redundancy with existing tools.
+  Standard turnaround time: 2 to 3 business days.
+- Exceeding $5,000 Annual Cost (Director + Finance + Legal Tier): High-value enterprise software acquisitions require comprehensive governance:
+  1. Department Director or VP approval.
+  2. Head of IT & Chief Technology Officer (CTO) architectural sign-off.
+  3. Legal counsel review of Master Services Agreement (MSA) and indemnity terms.
+  4. Finance Director budget allocation review.
+  Standard turnaround time: 10 to 14 business days.
+
+## 4. Software Renewals and License Reclamation
+Acme conducts quarterly automated license utilization audits. IT monitors tool logins and API tokens:
+- 60-Day Inactivity Reclamation: Any assigned SaaS license (e.g., Figma, GitHub, JetBrains) that demonstrates zero user logins or activity for sixty (60) consecutive days will be automatically harvested and returned to the unassigned enterprise license pool.
+- Re-activation: Employees whose licenses have been reclaimed due to inactivity can request immediate re-activation through the IT self-service portal without undergoing a new approval workflow.
+- Annual Renewal Audits: Department heads receive an automated 90-day renewal notice in Coupa to review contract performance, negotiated discount rates, and ongoing business necessity before any enterprise contract autorenews.
+
+For urgent software procurement inquiries, contact the IT Procurement Helpdesk at software-procurement@acmeglobal.com or join `#it-software-requests` on Slack.

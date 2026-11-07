@@ -1,0 +1,66 @@
+# ACME GLOBAL TECHNOLOGIES - ENGINEERING ONBOARDING GUIDE & RAMP PLAN
+Welcome Document: ENG-ONB-2025-001
+Effective Date: January 1, 2025
+Managed by: Engineering Enablement & People Operations
+Target Audience: New Software Engineers, SREs, QA Engineers, and Technical Leads
+
+## 1. Welcome to Acme Engineering
+Welcome to the Acme Global Technologies engineering organization! As a member of our engineering team, you join a collaborative global community building scalable distributed systems and intelligent applications. We have structured this onboarding guide to support your first 90 days, ensure you establish strong foundational technical mastery, integrate comfortably into team rituals, and ship meaningful code to production smoothly.
+
+## 2. Onboarding Timeline: Weeks 1 through 3
+
+### Week 1: Hardware Setup, Security Credentials, and Local Tooling
+Your primary objective during Week 1 is getting your local development environment fully configured and operational:
+- Day 1: Unbox your corporate 16-inch Apple MacBook Pro M3 Max (or ThinkPad P1 Gen 6 Linux workstation). Complete initial enrollment in Jamf / Microsoft Intune device management. Set up your 12+ character password and configure Okta Verify MFA on your mobile device.
+- Day 2: Install required development utilities via our internal setup script (`curl -fsSL https://setup.eng.acmeglobal.com | bash`). This installs Homebrew, Git, Docker Desktop Enterprise, Python 3.11, pyenv, Node.js (nvm), AWS CLI v2, and kubectl.
+- Day 3: Verify access to core SaaS engineering tools: GitHub Enterprise, 1Password, Slack, Atlassian Jira, Confluence, Datadog, and AWS Sandbox. Verify you can connect to our corporate GlobalProtect VPN.
+- Days 4-5: Meet your designated Onboarding Buddy (see Mentorship Program below) and your squad engineering manager for an initial 1-on-1 welcome session and review your 30-day ramp goals.
+
+### Week 2: Architectural Deep Dive and Codebase Tour
+During Week 2, you transition from workstation setup to codebase comprehension:
+- Architectural Orientation: Review the System Architecture Specification in Confluence and watch recorded architectural overviews from our Principal Architecture Council.
+- Local Repository Checkout: Clone your squad's primary microservices repositories from GitHub (`git clone git@github.com:acmeglobal/core-services.git`).
+- Local Service Orchestration: Run the services locally using Docker Compose (`docker compose -f docker-compose.local.yml up -d`). Verify that the API gateway, PostgreSQL instance, Redis cache, and Qdrant vector database initialize properly.
+- Codebase Tour Walkthrough: Schedule a dedicated 90-minute pairing session with your Onboarding Buddy to walk through the domain logic, database migration scripts (Alembic), API route handlers, and event publishers.
+
+### Week 3: Shipping Your First Pull Request (First PR Milestone)
+By the end of Week 3, you will ship your first code change to staging and production:
+- Selecting a "Good First Issue": Pick a pre-triaged Jira ticket tagged `good-first-issue` or `tech-debt-onboarding` with your squad lead. Typical first tasks involve adding a new unit test suite, refactoring an internal utility function, or improving API input validation.
+- Development & Branching: Create a feature branch following our naming convention (`feat/ONB-101-validate-endpoint`).
+- Code Review: Submit your PR to GitHub, ensuring CI automated test gates pass with >80% coverage. Request reviews from your Onboarding Buddy and one senior squad peer.
+- Deployment Celebration: Watch your changes deploy through ArgoCD to staging, verify synthetic tests, and observe the canary rollout into production!
+
+## 3. Milestones: 30-Day, 60-Day, and 90-Day Goals
+- 30-Day Goals:
+  * Complete all mandatory InfoSec, GDPR privacy, and harassment compliance training modules.
+  * Successfully author, review, and ship at least two production PRs.
+  * Understand your squad's primary domain entities, data schemas, and key upstream/downstream service dependencies.
+  * Conduct introductory 1-on-1 coffee chats with key cross-functional partners (Product Manager, QA lead, DevOps partner).
+- 60-Day Goals:
+  * Lead the end-to-end implementation of a medium-complexity sprint feature or bug fix.
+  * Participate in code reviews for squad peers, providing constructive and detailed technical feedback.
+  * Shadow the primary on-call engineer during a scheduled on-call rotation shift to learn alerting triage in PagerDuty and Datadog.
+- 90-Day Goals:
+  * Take on independent primary or secondary on-call rotation responsibilities.
+  * Author an architectural technical design proposal or RFC for an upcoming roadmap feature.
+  * Complete your formal 90-day onboarding review with your engineering manager and establish annual OKRs.
+
+## 4. The Engineering Mentorship Program
+Every new engineering hire is paired with an experienced Onboarding Buddy from day one:
+- Role of the Buddy: Your buddy is a peer (not your evaluator or manager) dedicated to answering all questions—no matter how basic—regarding internal conventions, unwritten team norms, debugging weird local environment issues, or navigating the organization.
+- Cadence: Daily 15-minute informal morning check-ins during Week 1 and Week 2; transitioning to twice-weekly 30-minute syncs through Day 60.
+
+## 5. Team Rituals and Agile Cadence
+Acme engineering operates on two-week sprint cycles:
+- Daily Standup: Every morning at 9:30 AM local time (conducted on Zoom or Slack huddle; max 15 minutes). Format: What you completed yesterday, what you plan to accomplish today, and any active blockers.
+- Sprint Planning: Every alternating Monday at 10:30 AM (90 minutes). The squad reviews groomed Jira stories, estimates story points using Fibonacci poker, and commits to sprint deliverables.
+- Backlog Grooming: Weekly on Wednesday afternoons at 2:00 PM (45 minutes). Refine user stories with Product Managers and Acceptance Criteria.
+- Bi-Weekly Sprint Retrospective: Alternating Fridays at 3:00 PM (60 minutes). Blameless, collaborative session to discuss: What went well? What could be improved? Action items for the next sprint.
+
+## 6. Where to Get Help and Essential Slack Channels
+Never stay stuck for more than 30 minutes without asking for guidance! Helpful resources:
+- `#eng-help`: General engineering inquiries, tool troubleshooting, and cross-team questions.
+- `#git-support`: Git rebase problems, CI pipeline failures, or branch protection questions.
+- `#devops-oncall`: Urgent infrastructure issues, Kubernetes cluster access, or AWS sandbox quotas.
+- `#it-helpdesk`: Laptop hardware issues, peripheral requests, or Okta SSO lockouts.
+- `#new-hires-2025`: Social community and peer network for all colleagues onboarding this year.

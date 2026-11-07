@@ -1,0 +1,74 @@
+# ACME GLOBAL TECHNOLOGIES - IT HELPDESK & TECHNICAL SUPPORT GUIDE
+Document: GUI-IT-2025-002
+Effective Date: January 1, 2025
+Managed by: Global IT Support Operations
+Helpdesk Portal: https://helpdesk.company.com
+Emergency Helpdesk Phone: +1 (800) 555-TECH (x8324)
+Slack Channel: `#it-helpdesk` (Monitored 24/7/365)
+
+## 1. Overview of IT Helpdesk Services
+The Acme Global Technologies IT Helpdesk provides technical support, hardware lifecycle services, network troubleshooting, and software provisioning for over 500 employees located across our offices in New York City, London, Singapore, and Tel Aviv, as well as our distributed remote workforce. Our mission is to resolve technical impediments rapidly and ensure seamless digital productivity.
+
+## 2. How to Submit a Support Ticket
+We offer multiple convenient channels for logging technical issues and service requests:
+1. Web Portal (Recommended): Visit https://helpdesk.company.com. Log in via Okta Single Sign-On, select the relevant category (Hardware, Software, Network/VPN, Access & Permissions, Account Security), describe the symptoms, attach relevant error screenshots or log excerpts, and submit.
+2. Slack Integration: Post your query directly in `#it-helpdesk` or invoke our Slack bot by typing `/helpdesk [brief description of issue]`. The bot will automatically generate an audited ticket and reply with your unique ticket reference ID (e.g., INC-48201).
+3. Email Submission: Send a detailed email to support@helpdesk.company.com. The incoming email will automatically generate a support ticket and confirm receipt within two minutes.
+4. Urgent Phone Dispatch: For critical outages or emergencies preventing computer operation, call +1 (800) 555-TECH to reach an on-duty operations engineer.
+
+## 3. Priority Levels and Service Level Agreements (SLAs)
+All incoming tickets are evaluated, classified, and assigned an SLA based on operational severity and business impact:
+
+### Priority 1: Critical (P1 - System Down)
+- Definition: Catastrophic infrastructure failure, core production service outage, company-wide VPN cluster failure, or widespread security breach impacting multiple squads or business units.
+- Initial Response SLA: Within 1 hour (24/7/365).
+- Target Resolution SLA: Continuous active engagement until resolved; target resolution within 4 hours.
+- Escalation: Automatically pages On-Call Incident Commander and IT Operations Director.
+
+### Priority 2: High (P2 - Major Impact)
+- Definition: Significant operational degradation impacting an entire department or critical business function with no viable workaround (e.g., customer billing portal unreachable, staging cluster deployment failures, or entire office Wi-Fi network down).
+- Initial Response SLA: Within 4 hours (during standard business operations).
+- Target Resolution SLA: Within 12 hours.
+
+### Priority 3: Medium (P3 - Minor Impact)
+- Definition: Individual employee productivity impacted by hardware malfunction, non-critical software crashes, peripheral failures (monitors, keyboards), or localized application errors where an alternate workaround exists.
+- Initial Response SLA: Within 24 hours.
+- Target Resolution SLA: Within 48 hours.
+
+### Priority 4: Low (P4 - General Request)
+- Definition: Routine administrative requests, standard access provisioning, hardware upgrades, peripheral requests, general inquiries, or long-term configuration enhancements.
+- Initial Response SLA: Within 48 hours.
+- Target Resolution SLA: Within 5 business days.
+
+## 4. Self-Service Resources and Knowledge Base
+Before opening a support ticket, employees are encouraged to explore our self-service knowledge base at https://helpdesk.company.com/kb. Our automated diagnostic tools can resolve many common issues instantly without human intervention.
+
+## 5. Common Issues and Step-by-Step Solutions
+
+### Issue 1: GlobalProtect VPN Connection Failure
+- Symptoms: Connection drops, "Gateway Unreachable" error, or continuous reconnection loops.
+- Resolution Steps:
+  1. Verify your local residential internet connection is stable by browsing a public website.
+  2. Open the GlobalProtect client application from your menu bar or system tray.
+  3. Click the gear icon, navigate to `Settings` > `Troubleshooting`, and select "Refresh Connection".
+  4. If unresolved, switch the connection portal dropdown from `vpn-primary.acmeglobal.com` to regional secondary gateway `vpn-backup.acmeglobal.com`.
+  5. Restart the GlobalProtect service daemon or reboot your laptop.
+
+### Issue 2: Corporate Email and Calendar Synchronization Errors
+- Symptoms: Outlook or Google Workspace prompts repeatedly for credentials or fails to display recent messages.
+- Resolution Steps:
+  1. Check your Okta session at https://acme.okta.com. If your SSO session has expired (after 12 hours), log back in and approve the MFA push notification.
+  2. In Microsoft Outlook, select `File` > `Account Settings` > `Update Folder List`.
+  3. If using webmail, clear your browser cache and cookies, or try an incognito session.
+  4. If email fails across all devices, check the status page at https://status.acmeglobal.com to determine if Microsoft 365 or Google Cloud is undergoing a platform outage.
+
+### Issue 3: Self-Service Password Reset
+- Symptoms: Account locked after multiple failed attempts, or temporary password expired.
+- Resolution Steps:
+  1. Visit the self-service reset portal at https://acme.okta.com/signin/forgot-password.
+  2. Enter your corporate email address (firstname.lastname@acmeglobal.com).
+  3. Choose your verification factor: Okta Verify push, SMS backup code, or registered personal secondary email.
+  4. Follow the prompt to establish a new 12+ character password adhering to complexity requirements (uppercase, lowercase, number, symbol).
+  5. Wait 60 seconds for synchronization across Active Directory and cloud SaaS applications before attempting re-login.
+
+For hardware replacement logistics, laptop loaners, or in-person walk-up support, visit the IT Tech Bar located on the 4th floor of our NYC headquarters or the 2nd floor of our London hub between 9:00 AM and 5:00 PM local time.

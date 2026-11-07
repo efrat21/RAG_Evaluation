@@ -1,0 +1,61 @@
+# ACME GLOBAL TECHNOLOGIES - ANNUAL BUDGETING AND FISCAL PLANNING PROCESS
+Framework Document: FP&A-2025-001
+Effective Date: January 1, 2025
+Managed by: Financial Planning & Analysis (FP&A) Team
+Executive Sponsor: David Kim, Chief Financial Officer
+FP&A Portal: https://finance.acmeglobal.com/fpa
+
+## 1. Executive Summary and Budget Architecture
+Acme Global Technologies ("Acme") operates on a standard calendar fiscal year running from January 1 through December 31. Our annual planning, budgeting, and capital allocation process aligns corporate strategic priorities with departmental operational execution. The framework establishes predictability, disciplined expenditure, and agile resource allocation across engineering squads, product teams, sales territories, and administrative departments worldwide.
+
+## 2. Annual Planning Timeline and Milestones
+The annual fiscal planning process operates on a disciplined multi-month cadence:
+- Phase 1: Strategic Guidance and Resource Modeling (October 1 - October 31)
+  * The Executive Leadership Team (ELT) establishes top-down corporate revenue targets, gross margin objectives, headcount growth ceilings, and strategic themes for the upcoming fiscal year.
+  * FP&A distributes departmental budget templates, cost driver assumptions, and historical run-rate benchmarks to all department Vice Presidents and squad leaders.
+- Phase 2: Departmental Bottom-Up Budget Formulation (November 1 - December 15)
+  * Department leaders build bottom-up operational models, detailed non-headcount expense plans, project capital requests, and vendor contract renewal estimates.
+  * Formal business reviews occur between department heads and their designated FP&A business partner.
+- Phase 3: Budget Consolidation and ELT Submission (January 5 - January 20)
+  * Departmental budgets are finalized and formally submitted into our corporate enterprise planning system (Adaptive Planning / Workday Financials).
+  * FP&A prepares the consolidated corporate P&L model, cash burn analysis, and capital allocation presentation for the Executive Committee.
+- Phase 4: Board of Directors Review and Formal Approval (February 1 - February 15)
+  * The CFO and CEO present the finalized corporate operating plan to the Board of Directors for formal review and adoption.
+  * Approved departmental budgets are locked in the ERP system by February 20, establishing the baseline against which performance is evaluated.
+
+## 3. Headcount Planning and Staffing Authorization
+Personnel costs represent Acme's largest operational investment. As such, headcount creation is governed with rigorous controls:
+- Headcount Request Business Case: Department heads must submit a formal Headcount Request Form in Greenhouse/Workday outlining: role title, compensation band (benchmarked against Radford tech salary surveys), location/tier requirements, hiring manager, start quarter, and technical justification (revenue impact, regulatory compliance, platform stability).
+- Backfills vs. Net New Roles: Backfills for departing employees in previously authorized positions require squad manager and VP approval. Net-new headcount additions outside the approved February budget ceiling require ELT approval and compensation committee review.
+- Contractor Conversions: Converting third-party contractors to full-time regular employees must be cost-neutral against the team's contracted services line item.
+
+## 4. Capital Expenditures (CapEx) vs. Operating Expenses (OpEx)
+Understanding the fiscal and accounting distinction between CapEx and OpEx is essential for departmental managers:
+- Capital Expenditures (CapEx): Purchases of physical or digital assets that provide enduring value beyond a single fiscal year. Includes server hardware, physical networking gear for company office data centers, facility leasehold improvements, and internally developed software capitalization under US GAAP ASC 350-40 (qualifying engineering hours dedicated to building core platform capabilities). CapEx items exceeding $5,000 must be tracked as depreciable corporate fixed assets.
+- Operating Expenses (OpEx): Ongoing, day-to-day expenditures required to maintain business operations. Includes SaaS subscription licenses (Slack, GitHub, AWS recurring compute/storage), employee salaries and benefits, marketing campaigns, travel, legal counsel retainers, and office utilities. OpEx is expensed immediately against the current period's profit and loss.
+
+## 5. Cost Center Structure and Chart of Accounts
+Every dollar spent at Acme is tracked by a designated five-digit Cost Center code and a four-digit General Ledger (GL) account code:
+- Engineering & R&D Cost Centers:
+  * CC-10100: Platform & Core Infrastructure Squad
+  * CC-10200: Data Engineering & Analytics Squad
+  * CC-10300: Product Engineering & Web Squad
+  * CC-10400: Security & InfoSec Squad
+  * CC-10500: DevOps, SRE & Cloud Engineering
+- Commercial & Marketing Cost Centers:
+  * CC-20100: Global Sales & Business Development
+  * CC-20200: Product Marketing & Growth
+  * CC-20300: Customer Success & Technical Support
+- General & Administrative (G&A) Cost Centers:
+  * CC-30100: Executive & Strategy
+  * CC-30200: People Operations & HR
+  * CC-30300: Finance, Tax & Accounting
+  * CC-30400: Legal, Compliance & IP
+
+## 6. Quarterly Business Reviews and Variance Reporting Process
+Departmental managers are accountable for operating within their allocated budgets:
+- Monthly Variance Thresholds: Department managers receive monthly budget-versus-actuals (BvA) reports on the 10th business day following month-end close. Any line-item variance exceeding 10% or $25,000 against forecast must be accompanied by an explanatory variance narrative.
+- Quarterly Business Reviews (QBRs): Held in April (Q1 close), July (Q2 close), October (Q3 close), and January (Q4 close). Squad leaders review project delivery milestones against spend velocity, discuss runway, and reallocate underutilized funds.
+- Re-forecasting (Reforecast Cadence): A mid-year forecast adjustment is conducted in June to rebalance funds across fast-growing or high-priority initiatives based on first-half company performance.
+
+For inquiries regarding cost center mapping, budget transfers, or FP&A models, reach out to fpa-team@acmeglobal.com.

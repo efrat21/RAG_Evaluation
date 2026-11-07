@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IntelliBase — Enterprise Knowledge Assistant</title>
+  
+  <!-- Font Awesome 6 Free Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+  
+  <!-- Marked.js for markdown rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+  <!-- =========================================================================
+       Guardrail Notification Toast
+       ========================================================================= -->
+  <div id="guardrail-toast" class="guardrail-toast" role="alert" aria-live="assertive">
+    <div class="guardrail-toast-icon">
+      <i class="fa-solid fa-shield-halved"></i>
+    </div>
+    <div class="guardrail-toast-content">
+      <div class="guardrail-toast-title" id="toast-title">Query Blocked by Guardrails</div>
+      <div class="guardrail-toast-desc" id="toast-message">Your request triggered an enterprise safety filter and was blocked.</div>
+    </div>
+    <button class="guardrail-toast-close" id="toast-close-btn" aria-label="Dismiss toast">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+
+  <!-- Mobile Sidebar Backdrop -->
+  <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
+
+  <!-- =========================================================================
+       View 1: Login Screen (shown when not authenticated)
+       ========================================================================= -->
+  <div id="login-view" class="login-view-wrapper">
+    <div class="login-card">
+      <div class="login-logo-area">
+        <div class="login-logo-icon">
+          <i class="fa-solid fa-brain"></i>
+        </div>
+        <h1 class="login-title">IntelliBase</h1>
+        <p class="login-subtitle">Internal RAG Knowledge Assistant</p>
+      </div>
+
+      <div id="login-error" class="login-error-banner">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span id="login-error-text">Invalid username or password.</span>
+      </div>
+
+      <form id="login-form" class="login-form" novalidate>
+        <div class="form-group">
+          <label for="login-username" class="form-label">Username</label>
+          <div class="input-icon-wrapper">
+            <input 
+              type="text" 
+              id="login-username" 
+              class="form-input" 
+              placeholder="Enter your username" 
+              required 
+              autocomplete="username" 
+            />
+            <i class="fa-solid fa-user"></i>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="login-password" class="form-label">Password</label>
+          <div class="input-icon-wrapper">
+            <input 
+              type="password" 
+              id="login-password" 
+              class="form-input" 
+              placeholder="••••••••" 
+              required 
+              autocomplete="current-password" 
+            />
+            <i class="fa-solid fa-lock"></i>
+          </div>
+        </div>
+
+        <button type="submit" id="login-submit-btn" class="btn-primary btn-submit-login">
+          <span id="login-btn-text">Sign In</span>
+          <i class="fa-solid fa-arrow-right" id="login-btn-icon"></i>
+        </button>
+      </form>
+
+      <div class="demo-credentials-hint">
+        Enterprise SSO or Local: <code>admin</code> / <code>admin123</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       View 2: Chat Interface (shown after login)
+       ========================================================================= -->
+  <div id="chat-view" class="app-container" style="display: none;">
+    
+    <!-- Left Navigation Sidebar (280px) -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-brand-icon">
+          <i class="fa-solid fa-brain"></i>
+        </div>
+        <div>
+          <div class="sidebar-brand-title">IntelliBase</div>
+          <div class="sidebar-brand-badge">Enterprise RAG</div>
+        </div>
+      </div>
+
+      <div class="sidebar-action-wrap">
+        <button id="new-chat-btn" class="btn-new-chat">
+          <i class="fa-solid fa-plus"></i>
+          <span>New Chat</span>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="index.html" class="nav-link active">
+          <i class="fa-solid fa-comment-dots"></i>
+          <span>Knowledge Chat</span>
+        </a>
+        <a href="dashboard.html" class="nav-link">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>Observability</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-history-section">
+        <div class="history-heading">Recent Conversations</div>
+        <ul id="session-list" class="session-list">
+          <!-- Session items loaded dynamically by js/chat.js -->
+        </ul>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="user-avatar" id="sidebar-user-avatar">AD</div>
+          <div class="user-details">
+            <span class="username-display" id="sidebar-username">admin</span>
+            <span class="user-role">Enterprise User</span>
+          </div>
+        </div>
+        <button id="logout-btn" class="btn-icon" title="Sign Out" aria-label="Sign Out">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Chat Workspace -->
+    <main class="main-chat">
+      <!-- Chat Header -->
+      <header class="chat-header">
+        <div class="chat-header-info">
+          <button id="hamburger-btn" class="hamburger-btn" aria-label="Toggle navigation">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="header-title-wrap">
+            <h1>Knowledge Assistant</h1>
+            <p>Indexed across 14,200+ internal engineering, product & compliance docs</p>
+          </div>
+        </div>
+        
+        <div class="status-indicator-badge">
+          <span class="pulse-dot"></span>
+          <span>RAG Online & Ready</span>
+        </div>
+      </header>
+
+      <!-- Scrollable Messages Container -->
+      <div id="messages-container" class="messages-container">
+        <!-- Default Welcome Hero -->
+        <div id="welcome-hero" class="welcome-hero glass-panel">
+          <div class="welcome-icon">
+            <i class="fa-solid fa-sparkles"></i>
+          </div>
+          <h2>Hello! I'm your company knowledge assistant.</h2>
+          <p>Ask me anything about our policies, engineering standards, deployment runbooks, or internal documentation.</p>
+          
+          <div class="prompt-suggestions">
+            <button class="suggestion-chip" data-prompt="What is our security disclosure and incident response policy?">
+              <i class="fa-solid fa-shield-cat"></i> Security incident policy
+            </button>
+            <button class="suggestion-chip" data-prompt="How do we deploy microservices to the staging Kubernetes cluster?">
+              <i class="fa-solid fa-server"></i> Kubernetes staging deploy
+            </button>
+            <button class="suggestion-chip" data-prompt="Summarize the PTO and parental leave guidelines for 2026.">
+              <i class="fa-solid fa-calendar-check"></i> PTO & Leave guidelines
+            </button>
+            <button class="suggestion-chip" data-prompt="Explain our API rate limiting and token authentication flow.">
+              <i class="fa-solid fa-key"></i> API Auth & Rate limits
+            </button>
+          </div>
+        </div>
+
+        <!-- Dynamic chat messages inserted here -->
+      </div>
+
+      <!-- Floating Bottom Input Area -->
+      <div class="input-area-wrapper">
+        <div class="chat-input-container">
+          <textarea 
+            id="query-input" 
+            class="chat-textarea" 
+            rows="1" 
+            placeholder="Ask a question or search internal docs..."
+          ></textarea>
+          <div class="input-actions">
+            <button id="send-btn" class="btn-send" title="Send Query" aria-label="Send Query">
+              <i class="fa-solid fa-paper-plane"></i>
+            </button>
+          </div>
+        </div>
+        <div class="input-shortcut-hint">
+          <span>Press <strong>Enter</strong> to send &bull; <strong>Shift + Enter</strong> for new line &bull; Guardrail protected</span>
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Chat Script -->
+  <script src="js/chat.js"></script>
+</body>
+</html>

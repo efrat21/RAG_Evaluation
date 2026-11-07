@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Observability & Evaluation — IntelliBase RAG</title>
+  
+  <!-- Font Awesome 6 Free Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Mobile Sidebar Backdrop -->
+  <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
+
+  <div class="app-container">
+    
+    <!-- Left Navigation Sidebar (280px) -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-brand-icon">
+          <i class="fa-solid fa-brain"></i>
+        </div>
+        <div>
+          <div class="sidebar-brand-title">IntelliBase</div>
+          <div class="sidebar-brand-badge">Enterprise RAG</div>
+        </div>
+      </div>
+
+      <div class="sidebar-action-wrap">
+        <a href="index.html" class="btn-new-chat" style="text-decoration: none;">
+          <i class="fa-solid fa-plus"></i>
+          <span>New Chat</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="index.html" class="nav-link">
+          <i class="fa-solid fa-comment-dots"></i>
+          <span>Knowledge Chat</span>
+        </a>
+        <a href="dashboard.html" class="nav-link active">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>Observability</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-history-section">
+        <div class="history-heading">Telemetry Views</div>
+        <ul class="session-list">
+          <li class="session-item active">
+            <div class="session-title-wrap">
+              <i class="fa-solid fa-gauge-high"></i>
+              <span class="session-title">Overview & 5-Layer Eval</span>
+            </div>
+          </li>
+          <li class="session-item" onclick="window.open('http://localhost:3000/d/knowledge-assistant', '_blank')">
+            <div class="session-title-wrap">
+              <i class="fa-solid fa-chart-pie"></i>
+              <span class="session-title">Grafana Direct</span>
+            </div>
+          </li>
+          <li class="session-item" onclick="window.open('http://localhost:16686', '_blank')">
+            <div class="session-title-wrap">
+              <i class="fa-solid fa-network-wired"></i>
+              <span class="session-title">Jaeger Traces</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="user-avatar" id="sidebar-user-avatar">AD</div>
+          <div class="user-details">
+            <span class="username-display" id="sidebar-username">admin</span>
+            <span class="user-role">Enterprise Admin</span>
+          </div>
+        </div>
+        <button id="logout-btn" class="btn-icon" title="Sign Out" aria-label="Sign Out">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Dashboard Area -->
+    <main class="dashboard-main">
+      
+      <!-- Dashboard Header -->
+      <header class="dashboard-header">
+        <div class="dashboard-header-title">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 4px;">
+            <button id="hamburger-btn" class="hamburger-btn" aria-label="Toggle navigation">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+            <h1>RAG Observability & Continuous Evaluation</h1>
+          </div>
+          <p>Real-time metrics, OpenTelemetry traces, and comprehensive 5-layer quality benchmarking</p>
+        </div>
+
+        <div class="dashboard-header-actions">
+          <div class="status-indicator-badge">
+            <span class="pulse-dot"></span>
+            <span id="auto-refresh-label">Live: Updating in 30s</span>
+          </div>
+          <button id="refresh-stats-btn" class="btn-secondary" title="Refresh Now">
+            <i class="fa-solid fa-rotate-right"></i>
+            <span>Refresh</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Section 1: Quick Stats Row (4 Cards) -->
+      <section class="stats-grid" aria-label="Quick System Stats">
+        
+        <!-- Stat Card 1: Active Sessions -->
+        <div class="glass-panel stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Active Sessions</span>
+            <div class="stat-icon">
+              <i class="fa-solid fa-users"></i>
+            </div>
+          </div>
+          <div class="stat-value" id="stat-sessions">24</div>
+          <div class="stat-trend trend-up">
+            <i class="fa-solid fa-arrow-trend-up"></i>
+            <span id="stat-sessions-trend">+14% vs last hour</span>
+          </div>
+        </div>
+
+        <!-- Stat Card 2: Avg Latency P95 -->
+        <div class="glass-panel stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Avg Latency (P95)</span>
+            <div class="stat-icon">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+          </div>
+          <div class="stat-value" id="stat-latency">342ms</div>
+          <div class="stat-trend trend-down">
+            <i class="fa-solid fa-arrow-trend-down"></i>
+            <span id="stat-latency-trend">-28ms improvement</span>
+          </div>
+        </div>
+
+        <!-- Stat Card 3: Overall CSAT % -->
+        <div class="glass-panel stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Overall CSAT</span>
+            <div class="stat-icon">
+              <i class="fa-solid fa-heart"></i>
+            </div>
+          </div>
+          <div class="stat-value" id="stat-csat">94.8%</div>
+          <div class="stat-trend trend-up">
+            <i class="fa-solid fa-thumbs-up"></i>
+            <span id="stat-csat-trend">98 positive / 5 negative</span>
+          </div>
+        </div>
+
+        <!-- Stat Card 4: Error Rate % -->
+        <div class="glass-panel stat-card">
+          <div class="stat-card-header">
+            <span class="stat-label">Error Rate</span>
+            <div class="stat-icon">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+          </div>
+          <div class="stat-value" id="stat-error-rate">0.14%</div>
+          <div class="stat-trend trend-down">
+            <i class="fa-solid fa-circle-check"></i>
+            <span id="stat-error-trend">Well within 1.0% SLO</span>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Section 2: Grafana Dashboard Embed -->
+      <section class="glass-panel grafana-section" aria-label="Grafana Dashboard Embed">
+        <div class="section-header-row">
+          <div class="section-heading-title">
+            <i class="fa-solid fa-chart-area"></i>
+            <span>Grafana Enterprise Metrics & Telemetry</span>
+          </div>
+          <a 
+            href="http://localhost:3000/d/knowledge-assistant" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="btn-secondary"
+          >
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <span>Open in Grafana</span>
+          </a>
+        </div>
+
+        <div class="iframe-container">
+          <iframe 
+            src="http://localhost:3000/d/knowledge-assistant?orgId=1&kiosk=tv&theme=dark" 
+            id="grafana-frame" 
+            class="grafana-iframe"
+            title="Grafana Observability Dashboard"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </section>
+
+      <!-- Section 3: Evaluation Panel -->
+      <section class="glass-panel evaluation-section" aria-label="5-Layer Evaluation Panel">
+        <div class="section-header-row">
+          <div>
+            <div class="section-heading-title">
+              <i class="fa-solid fa-microchip"></i>
+              <span>5-Layer Continuous RAG Evaluation</span>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">
+              Automated benchmarking of ingestion quality, vector retrieval accuracy, LLM generation, system reliability, and business impact.
+            </p>
+          </div>
+
+          <div class="eval-header-controls">
+            <div class="eval-status-info">
+              <span>Status: </span>
+              <strong id="eval-last-run">Last run: Never</strong>
+            </div>
+            <button id="run-eval-btn" class="btn-primary">
+              <i class="fa-solid fa-play" id="eval-btn-icon"></i>
+              <span id="eval-btn-text">Run Evaluation</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 5 Layer Collapsible Sections -->
+        <div id="eval-layers-container" class="eval-layers-container">
+          
+          <!-- Layer 1: Data Quality -->
+          <div class="eval-layer-card expanded" id="layer-card-1">
+            <div class="eval-layer-header" onclick="toggleLayer('layer-card-1')">
+              <div class="eval-layer-title-wrap">
+                <span class="layer-number-badge">L1</span>
+                <div>
+                  <div class="eval-layer-title">Data & Chunk Quality</div>
+                  <div class="eval-layer-subtitle">Document chunking, freshness & extraction accuracy</div>
+                </div>
+              </div>
+              <div class="eval-layer-badges">
+                <span class="badge badge-success" id="badge-l1">Good &bull; 95%</span>
+                <i class="fa-solid fa-chevron-down eval-layer-chevron"></i>
+              </div>
+            </div>
+            <div class="eval-layer-body">
+              <div class="metrics-grid">
+                <div class="metric-item">
+                  <div class="metric-header">
+                    <span class="metric-label">Chunk Quality Score</span>
+                    <span class="metric-value" id="val-chunk-quality">94.5%</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill progress-good" style="width: 94.5%;"></div>
+                  </div>
+                </div>
+                <div class="metric-item">
+                  <div class="metric-header">
+                    <span class="metric-label">Knowledge Freshness</span>
+                    <span class="metric-value" id="val-freshness">98.2%</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill progress-good" style="width: 98.2%;"></div>
+                  </div>
+                </div>
+                <div class="metric-item">
+                  <div class="metric-header">
+                    <span class="metric-label">Parser Error Rate</span>
+                    <span class="metric-value" id="val-parse-errors">0.12%</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill progress-good" style="width: 98.8%;"></div>
+                  </div>
+                </div>
+                <div class="metric-item">
+                  <div class="metric-header">
+                    <span class="metric-label">Corpus Coverage</span>
+                    <span class="metric-value" id="val-coverage">96.0%</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill progress-good" style="width: 96%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Layer 2: Retrieval Accuracy (RAGAS) -->
+          <div class="eval-layer-card expanded" id="layer-card-2">
+            <div class="eval-layer-header" onclick="toggleLayer('layer-card-2')">
+              <div class="eval-layer-title-wrap">
+                <span class="layer-number-badge">L2</span>
+                <div>
+                  <div class="eval-layer-title">Vector Retrieval Accuracy (RAGAS)</div>
+                  <div class="eval-layer-subtitle">Bi-encoder embeddings & cross-encoder re-ranking</div>
+                </div>
+              </div>
+              <div class="eval-layer-badges">
+                <span class="badge badge-success" id="badge-l2">Good &bull; 0.88</span>
+                <i class="fa-solid fa-chevron-down eval-layer-chevron"></i>
+              </div>
+            </div>
+            <div class="eval-layer-body">
+              <div class="metrics-grid">
+                <div class="metric-item">
+                  <div class="metric-header">
+                    <span class="metric-label">Precision@5</span>
+                    <span class="metric-value" id="val-p5">0.89</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill progress-good" style="width: 89%;"></div>
+                  </div>
+                </div>
+                <div class="metric-item">
+                  <div class="metric-header">
+                    <span class="metric-label">Recall@5</span>
+                    <span class="metric-value" id="val-r5">0.86</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill progress-good" style="width: 86%;"></div>
+                  </div>
+                </div>
+                <div class="metric-item">
+                  <div class="metric-header">
+                    <span class="metric-label">Mean Reciprocal Rank (MRR)</span>
+                    <span class="metric-value" id="val-mrr">0.91</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill progress-good" style="width: 91%;"></div>
+                  </div>
+                </div>
+                <div class="metric-item">
+                  <div class="metric-header">
+                    <span class="metric-label">NDCG@5</span>
+                    <span class="metric-value" id="val-ndcg5">0.88</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill progress-good" style="width: 88%;"></div>
+                  </div>
+                </div>
+                <div class="metric-item">
+                  <div class="metric-header">
+                    <span class="metric-label">Context Precision</span>
+                    <span class="metric-value" id="val-ctx-precision">0.92</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill progress-good" style="width: 92%;"></div>
+                  </div>
+                </div>
+                <div class="metric-item">
+                  <div class="metric-header">
+                    <span class="metric-label">Context Recall</span>
+                    <span class="metric-value" id="val-ctx-recall">0.87</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill progress-good" style="width: 87%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Layer 3: Generation Quality (RAGAS) -->
+          <div class="eval-layer-card expanded" id="layer-card-3">
+            <div class="eval-layer-header" onclick="toggleLayer('layer-card-3')">
+              <div class="eval-layer-title-wrap">
+                <span class="layer-number-badge">L3</span>
+                <div>
+                  <div class="eval-layer-title">Generation & Synthesis Quality (RAGAS)</div>
+                  <div class="eval-layer-subtitle">Faithfulness, hallucination resistance & factual ground truth</div>
+                </div>
+              </div>
+              <div class="eval-layer-badges">
+                <span class="badge badge-success" id="badge-l3">Good &bull; 0.92</span>
+                <i class="fa-solid fa-chevron-down eval-layer-chevron"></i>
+              </div>
+            </div>
+            <div class="eval-layer-body">
+              <div class="metrics-grid">
+                <div class="metric-item">
+                  <div class="metric-header">
+                    <span class="metric-label">Faithfulness (Zero Hallucination)</span>
+                    <span class="metric-value" id="val-faithfulness">0.95</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill progress-good" style="width: 95%;"></div>
+                  </div>
+                </div>
+                <div class="metric-item">
+                  <div class="metric-header">
+                    <span class="metric-label">Answer Correctness</span>
+                    <span class="metric-value" id="val-correctness">0.91</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill progress-good" style="width: 91%;"></div>
+                  </div>
+                </div>
+                <div class="metric-item">
+                  <div class="metric-header">
+                    <span class="metric-label">Answer Relevance</span>
+                    <span class="metric-value" id="val-relevance">0.94</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill progress-good" style="width: 94%;"></div>
+                  </div>
+                </div>
+                <div class="metric-item">
+                  <div class="metric-header">
+                    <span class="metric-label">Syntactic Completeness</span>
+                    <span class="metric-value" id="val-completeness">0.89</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill progress-good" style="width: 89%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Layer 4: System Reliability & Guardrails -->
+          <div class="eval-layer-card" id="layer-card-4">
+            <div class="eval-layer-header" onclick="toggleLayer('layer-card-4')">
+              <div class="eval-layer-title-wrap">
+                <span class="layer-number-badge">L4</span>
+                <div>
+                  <div class="eval-layer-title">System Reliability & Guardrails</div>
+                  <div class="eval-layer-subtitle">Latency, API errors, rate limits & safety triggers</div>
+                </div>
+              </div>
+              <div class="eval-layer-badges">
+                <span class="badge badge-success" id="badge-l4">Good</span>
+                <i class="fa-solid fa-chevron-down eval-layer-chevron"></i>
+              </div>
+            </div>
+            <div class="eval-layer-body">
+              <div class="metrics-grid">
+                <div class="metric-item">
+                  <div class="metric-header">
+                    <span class="metric-label">Latency P95</span>
+                    <span class="metric-value" id="val-latency-p95">342ms</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill progress-good" style="width: 92%;"></div>
+                  </div>
+                </div>
+                <div class="metric-item">
+                  <div class="metric-header">
+                    <span class="metric-label">System Error Rate</span>
+                    <span class="metric-value" id="val-err-rate">0.14%</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill progress-good" style="width: 98.6%;"></div>
+                  </div>
+                </div>
+                <div class="metric-item">
+                  <div class="metric-header">
+                    <span class="metric-label">Guardrail Blocks (24h)</span>
+                    <span class="metric-value" id="val-guardrail-blocks">8 queries</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill progress-good" style="width: 95%;"></div>
+                  </div>
+                </div>
+                <div class="metric-item">
+                  <div class="metric-header">
+                    <span class="metric-label">Uptime Availability</span>
+                    <span class="metric-value" id="val-uptime">99.98%</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill progress-good" style="width: 99.98%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Layer 5: Business Impact & Costs -->
+          <div class="eval-layer-card" id="layer-card-5">
+            <div class="eval-layer-header" onclick="toggleLayer('layer-card-5')">
+              <div class="eval-layer-title-wrap">
+                <span class="layer-number-badge">L5</span>
+                <div>
+                  <div class="eval-layer-title">Business Impact & Cost Efficiency</div>
+                  <div class="eval-layer-subtitle">CSAT, deflection rate, engineer time saved & tokens</div>
+                </div>
+              </div>
+              <div class="eval-layer-badges">
+                <span class="badge badge-success" id="badge-l5">Good</span>
+                <i class="fa-solid fa-chevron-down eval-layer-chevron"></i>
+              </div>
+            </div>
+            <div class="eval-layer-body">
+              <div class="metrics-grid">
+                <div class="metric-item">
+                  <div class="metric-header">
+                    <span class="metric-label">CSAT Satisfaction</span>
+                    <span class="metric-value" id="val-csat-biz">94.8%</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill progress-good" style="width: 94.8%;"></div>
+                  </div>
+                </div>
+                <div class="metric-item">
+                  <div class="metric-header">
+                    <span class="metric-label">Task Completion Rate</span>
+                    <span class="metric-value" id="val-task-completion">92.4%</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill progress-good" style="width: 92.4%;"></div>
+                  </div>
+                </div>
+                <div class="metric-item">
+                  <div class="metric-header">
+                    <span class="metric-label">Human Escalation Rate</span>
+                    <span class="metric-value" id="val-escalation-rate">2.8%</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill progress-good" style="width: 97.2%;"></div>
+                  </div>
+                </div>
+                <div class="metric-item">
+                  <div class="metric-header">
+                    <span class="metric-label">Avg Cost / Query</span>
+                    <span class="metric-value" id="val-cost-query">$0.0038</span>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill progress-good" style="width: 94%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Section 4: Recent Traces Table -->
+      <section class="glass-panel traces-section" aria-label="Recent Request Traces">
+        <div class="section-header-row">
+          <div>
+            <div class="section-heading-title">
+              <i class="fa-solid fa-list-check"></i>
+              <span>Recent Request Traces</span>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">
+              Distributed OpenTelemetry traces captured across query analysis, vector search, and LLM inference
+            </p>
+          </div>
+          <button id="refresh-traces-btn" class="btn-secondary">
+            <i class="fa-solid fa-arrows-rotate"></i>
+            <span>Refresh Traces</span>
+          </button>
+        </div>
+
+        <div class="traces-table-container">
+          <table class="traces-table">
+            <thead>
+              <tr>
+                <th>Trace ID</th>
+                <th>Timestamp</th>
+                <th>Query</th>
+                <th>Latency</th>
+                <th>Status</th>
+                <th>Guardrail</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="traces-table-body">
+              <!-- Dynamically populated by js/dashboard.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Dashboard Script -->
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

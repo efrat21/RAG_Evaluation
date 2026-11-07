@@ -1,0 +1,77 @@
+# ACME GLOBAL TECHNOLOGIES - CORPORATE ORGANIZATIONAL STRUCTURE & GOVERNANCE DIRECTORY
+Document Reference: ORG-DIR-2025-001
+Effective Date: January 1, 2025
+Managed by: People Operations & Corporate Communications
+Global Headcount: ~500 Full-Time Employees Globally
+
+## 1. Executive Leadership Team (ELT)
+Acme Global Technologies is guided by an experienced Executive Leadership Team reporting directly to the Board of Directors:
+- Sarah Chen - Chief Executive Officer (CEO):
+  * Based in New York City (HQ). Sarah oversees global corporate strategy, enterprise investor relations, board governance, and company-wide execution. Prior to co-founding Acme, Sarah served as VP of Enterprise Software at leading technology conglomerates and holds an MBA from Stanford University and a BS in Computer Science from MIT.
+- Michael Rodriguez - Chief Technology Officer (CTO):
+  * Based in New York City. Michael directs global engineering, technological research, enterprise architecture, patent portfolio development, and technical infrastructure. Michael previously served as Head of Cloud Infrastructure at major fintech leaders and holds an MS in Distributed Systems from Carnegie Mellon University.
+- Aisha Patel - Chief Product Officer (CPO):
+  * Based in London Hub. Aisha leads product management, user experience design (UX/UI), product analytics, customer research, and product marketing. Aisha brings over 15 years of product leadership in SaaS knowledge management and developer platforms.
+- David Kim - Chief Financial Officer (CFO):
+  * Based in New York City. David manages global corporate finance, financial planning & analysis (FP&A), accounting, treasury, investor relations, procurement, and tax compliance. David previously spent over a decade in technology investment banking and corporate finance leadership.
+- Jennifer Walsh - Chief Human Resources Officer (CHRO):
+  * Based in New York City. Jennifer heads People Operations, talent acquisition, total rewards and benefits, employee learning and development, performance enablement, and workplace culture across all global regions.
+
+## 2. Engineering Organization Structure and Squads
+The engineering organization comprises approximately 220 engineers, architects, data scientists, and technical managers organized into five specialized squads under CTO Michael Rodriguez:
+
+### 1. Platform & Core Infrastructure Squad
+- Squad Lead / Engineering Director: Marcus Vance (New York)
+- Focus Areas: High-performance microservices framework, distributed transaction orchestration, relational database architectures (PostgreSQL Aurora), message bus systems, and core tenant provisioning APIs.
+- Key Interfaces: Maintains developer SDKs and foundational RPC frameworks utilized by all other engineering teams.
+
+### 2. Data Engineering & Analytics Squad
+- Squad Lead / Engineering Director: Elena Rostova (Tel Aviv)
+- Focus Areas: Real-time event streaming pipelines with Apache Kafka, data warehousing (Snowflake), document parsing engines, machine learning evaluation pipelines, and vector database indexing (Qdrant).
+- Key Interfaces: Collaborates closely with RAG research scientists and business analytics teams.
+
+### 3. Product & Frontend Engineering Squad
+- Squad Lead / Engineering Director: Liam O'Connor (London)
+- Focus Areas: Web application frontend architectures (React, Next.js, TypeScript), mobile responsive client experiences, design system components, collaborative editor features, and accessibility compliance (WCAG 2.1 AA).
+- Key Interfaces: Partners directly with Product Managers and Product Designers under CPO Aisha Patel.
+
+### 4. Security & InfoSec Squad
+- Squad Lead / Chief Information Security Officer (CISO): Rachel Goldstein (Tel Aviv)
+- Focus Areas: Application security (AppSec), identity and access management (IAM / Okta SSO), vulnerability management, penetration testing, endpoint security (Jamf/Intune), compliance certifications (SOC 2, ISO 27001), and 24/7 Security Operations Center (SOC).
+
+### 5. DevOps, SRE & Cloud Engineering Squad
+- Squad Lead / Head of SRE: Tariq Al-Mansoor (Singapore)
+- Focus Areas: Kubernetes cluster orchestration (AWS EKS), infrastructure as code (Terraform), continuous integration and continuous deployment pipelines (GitHub Actions, ArgoCD GitOps), telemetry and observability (Datadog, OpenTelemetry), and incident management SLAs.
+
+## 3. Product, Design, and Marketing Structure
+Reporting to CPO Aisha Patel:
+- Group Product Managers (GPMs): Oversee discrete product solution areas including Enterprise Search, Generative Knowledge Assistants, and Workflow Automations.
+- Product Design & User Experience: Led by VP of Design Sophia Martinez, encompassing user research, interaction design, visual design, and user prototyping.
+- Technical Writing & Documentation: Authors developer API reference documentation, user guides, and enterprise administration manuals.
+
+## 4. Global Office Locations and Facilities
+Acme operates five primary office facilities and tech hubs supporting our hybrid workforce:
+1. New York City, USA (Global Corporate Headquarters):
+   * Address: 350 Fifth Avenue, 42nd Floor, New York, NY 10118.
+   * Functions: Executive Leadership, Finance, Legal, HR, Platform Squad, US Sales & Customer Success.
+   * Capacity: ~250 desks, collaboration lounges, executive briefing center.
+2. London, United Kingdom (European Tech Hub):
+   * Address: 25 Bank Street, Canary Wharf, London E14 5JP.
+   * Functions: Product Engineering Squad, International Sales, European Customer Success, Compliance.
+   * Capacity: ~120 desks.
+3. Singapore (Asia-Pacific Regional Hub):
+   * Address: 10 Collyer Quay, Ocean Financial Centre, Level 28, Singapore 049315.
+   * Functions: SRE/DevOps Follow-the-Sun operations, APAC Sales, Enterprise Solutions Architecture.
+   * Capacity: ~80 desks.
+4. Tel Aviv, Israel (Cybersecurity & R&D Center):
+   * Address: 132 Menachem Begin Road, Azrieli Center, Round Tower, Tel Aviv 6701101.
+   * Functions: Data Engineering & Analytics Squad, InfoSec & Cyber Defense, Advanced ML Research.
+   * Capacity: ~90 desks.
+
+## 5. Global Workforce Demographics and Distribution
+As of 2025, Acme employs approximately 500 team members globally:
+- Geography: North America (~50%), Europe & UK (~25%), Asia-Pacific (~15%), Middle East (~10%).
+- Departmental Breakdown: Engineering & Product (~55%), Sales & Marketing (~25%), Customer Support & Success (~10%), General & Administrative (~10%).
+- Operating Model: Hybrid (~70%) and Contractually Fully Remote (~30%).
+
+For updates to org charts, reporting lines, or directory listings, consult the Workday Organizational Hierarchy or contact org-directory@acmeglobal.com.

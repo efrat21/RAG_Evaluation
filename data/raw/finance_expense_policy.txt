@@ -1,0 +1,55 @@
+# ACME GLOBAL TECHNOLOGIES - CORPORATE TRAVEL & EXPENSE POLICY
+Policy Number: POL-FIN-2025-003
+Effective Date: January 1, 2025
+Approved by: David Kim, Chief Financial Officer
+Issuing Office: Global Finance & Accounting Operations
+Portal: https://expenses.acmeglobal.com (Expensify)
+
+## 1. Purpose and Guiding Principles
+Acme Global Technologies ("Acme") recognizes that business travel, client entertainment, and operational expenditures are often essential to driving customer growth, partner collaboration, and employee development. This Travel & Expense Policy establishes clear fiscal controls, reimbursement procedures, and behavioral standards to ensure that corporate expenditures are prudent, justifiable, and compliant with international tax guidelines. All employees incur expenses as fiduciaries of company resources.
+
+## 2. Business Travel Guidelines
+
+### Air Travel
+- Booking Lead Time: All domestic and international business flights must be booked at least two (2) weeks (14 calendar days) in advance of departure through our corporate travel management portal (Navan / TripActions). Booking fewer than 14 days in advance requires written justification and manager pre-approval.
+- Travel Class: Economy Class (Coach) is mandatory for all domestic flights and short-haul international flights with flight durations of fewer than eight (8) continuous hours.
+- Premium Economy / Business Class Exception: For non-stop flights exceeding eight (8) continuous flight hours (e.g., transatlantic flights from New York to London or transpacific flights to Singapore), employees may book Premium Economy. Long-haul Business Class is reserved exclusively for Executive Leadership Team (ELT) members or requires written pre-authorization from the CFO.
+- Seat Selection & Baggage: Standard seat selection fees and one (1) standard checked bag fee are fully reimbursable. Premium seat upgrades (extra legroom, first-class upgrades) must be paid personally unless covered by the airline's loyalty status.
+
+### Lodging and Accommodations
+- Hotel Nightly Limits: Standard domestic lodging rate limit is capped at $250.00 per night (excluding mandatory state and municipal taxes). In designated high-cost metropolitan areas (New York City, San Francisco, London, Singapore, Zurich), the allowable nightly limit increases up to $350.00 per night.
+- Booking Channel: Hotel accommodations must be booked through our corporate travel tool to benefit from corporate discounted rates and duty-of-care emergency tracking.
+- Ancillary Charges: Business-related high-speed Wi-Fi is reimbursable if not included in the standard room rate. Hotel mini-bar snacks, personal streaming services, in-room movies, dry cleaning for stays of fewer than four nights, and spa services are non-reimbursable personal expenses.
+
+### Ground Transportation
+- Taxis & Rideshares: Uber, Lyft, and licensed municipal taxis are preferred for airport transit and client meetings. Employees should utilize standard vehicle tiers (UberX or Lyft standard). Premium vehicle options (Uber Black, SUV) are prohibited unless traveling in a group of three or more employees with shared luggage.
+- Car Rentals: Permitted only when cost-effective compared to ridesharing or when public transit is unavailable. Book intermediate or compact size vehicles. Decline optional collision damage waiver (CDW) in the United States, as Acme maintains comprehensive corporate fleet insurance.
+
+## 3. Meal Allowances and Daily Per Diems
+Acme utilizes a daily per diem framework for individual meals during business travel:
+- Domestic Daily Per Diem: Capped at $75.00 per day. Suggested distribution: Breakfast ($15.00), Lunch ($25.00), Dinner ($35.00). Unused amounts from one meal may be rolled into another meal on the same calendar day, but per diems cannot be accumulated across multiple days.
+- International Daily Per Diem: Capped at $100.00 per day. Suggested distribution: Breakfast ($20.00), Lunch ($30.00), Dinner ($50.00).
+- Meals Provided by Conferences or Events: If breakfast, lunch, or dinner is provided by a conference, client, or company event, the corresponding per diem amount must be deducted from that day's expense claim.
+- Client Entertainment and Business Meals: When hosting prospective customers, clients, or business partners, meals are classified as "Business Entertainment" rather than individual per diem. Itemized restaurant receipts showing all food, beverages, and tips must be submitted, along with a list of attendee names, corporate titles, company affiliations, and business discussion topics. Alcohol must be kept to moderate, professional limits.
+
+## 4. Submission Timelines and Receipt Requirements
+- 30-Day Submission Deadline: All expense reports must be finalized and submitted via Expensify within thirty (30) calendar days from the date the expense was incurred (or within 30 days of returning from business travel). Expenses submitted beyond 60 calendar days will be automatically rejected and will not be reimbursed, except under extraordinary medical circumstances.
+- Mandatory Receipt Threshold: Legible, itemized receipts are strictly required for any expenditure exceeding $25.00. Credit card charge slips showing only the total transaction amount without itemized line items are insufficient under IRS accounting rules. For expenses under $25.00 (such as subway fares or tolls), receipts are encouraged but not mandatory if the business purpose is documented.
+
+## 5. Prohibited Non-Reimbursable Expenses
+The following items are strictly non-reimbursable personal expenditures:
+- Personal travel companions' travel, airfare, or meal costs.
+- Traffic citations, speeding tickets, parking fines, or towing fees.
+- Airline club memberships, lounge access passes, or TSA PreCheck / Global Entry fees (unless approved for frequent executive travelers).
+- Personal grooming services, toiletries, haircuts, fitness classes during travel (outside standard wellness stipend).
+- Lost baggage, lost personal property, or theft of personal electronics (submit claims to airline or personal renters' insurance).
+- Political contributions, charitable donations made in an individual's name, or gambling expenses.
+
+## 6. Expense Approval Workflows
+Expense reports route automatically through our financial controls hierarchy:
+1. Direct Manager Approval: Reviews business necessity, date validity, and policy alignment.
+2. Finance & Accounting Audit: Validates receipt legibility, tax compliance, and currency conversions.
+3. VP Sign-off: Required for any individual expense report exceeding $3,000.00.
+4. CFO Sign-off: Required for reports exceeding $10,000.00 or involving international team offsites.
+
+Reimbursements are processed via direct deposit on bi-weekly payroll cycles following final Finance audit approval. Direct inquiries to accounts-payable@acmeglobal.com.

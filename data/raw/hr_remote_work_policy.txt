@@ -1,0 +1,42 @@
+# ACME GLOBAL TECHNOLOGIES - REMOTE AND HYBRID WORK POLICY
+Document ID: POL-HR-2025-004
+Effective Date: February 1, 2025
+Target Audience: All Global Employees, Managers, and Contractors
+Issuing Department: People Operations & IT Infrastructure
+
+## 1. Policy Purpose and Guiding Philosophy
+Acme Global Technologies empowers team members to achieve their greatest impact by blending workplace autonomy with disciplined collaboration. This Remote and Hybrid Work Policy outlines the rules, financial support, environmental safety expectations, and digital engagement standards governing distributed and hybrid work arrangements across all operating jurisdictions.
+
+## 2. Remote Work Eligibility Criteria
+Remote work arrangements are a privilege and operational framework designed for positions whose responsibilities can be performed effectively outside an Acme physical office.
+- Tenure Requirement: New team members must complete a minimum of three (3) months of satisfactory continuous service before becoming eligible to apply for a formal full-time remote working arrangement. During the initial 3-month onboarding period, employees follow the standard hybrid schedule (two days weekly in-office) to build working relationships and complete hands-on onboarding.
+- Performance Standard: To qualify and maintain remote work status, an employee must maintain an active performance rating of "Meets Expectations" or higher on their most recent evaluation cycle and have no active disciplinary corrective action plans.
+- Approval Workflow: Formal remote status requires submission of a Remote Work Application via Workday, followed by written approval from the squad manager, department VP, and the People Operations Regional Director.
+
+## 3. Financial Stipends and Expense Reimbursements
+Acme provides dedicated financial stipends to ensure remote employees have the tools necessary to establish an ergonomic, productive workspace:
+- Home Office Setup Stipend: Approved full-time remote employees and hybrid employees are eligible for a one-time taxable equipment stipend of $1,500.00. This stipend must be claimed within 60 calendar days of remote status approval or initial hire. Eligible items include ergonomic office chairs, sit-stand desks, external monitor arms, task lighting, noise-canceling headsets, and lumbar supports. Note: IT provisions standard laptops and docking stations separately.
+- Monthly Internet Reimbursement: To offset residential high-speed broadband data connectivity, Acme provides a monthly recurring reimbursement of $50.00. Employees must submit monthly telecom utility statements through Expensify under the "Internet Expense" category. Internet connections must provide at least 50 Mbps download and 15 Mbps upload speeds to support continuous video conferencing and cloud development workflows.
+
+## 4. Core Collaboration Hours
+To preserve cross-functional agility and synchronous coordination across geographic time zones, all remote employees must be online, available, and responsive during Acme Core Hours:
+- Core Hours Window: 10:00 AM to 3:00 PM local time (based on the employee's assigned primary office location or contractual home region).
+- Responsiveness Expectations: During core hours, employees must be signed in to Slack with status indicators reflecting active status. Slack messages and urgent emails received during core hours should be acknowledged within 60 minutes.
+- Calendar Transparency: Employees must keep their Google Calendar updated with working hours, scheduled focus time, PTO blocks, and out-of-office indicators.
+
+## 5. Home Office Ergonomic and Safety Checklist
+Employees working remotely are responsible for maintaining a dedicated, safe, and hazard-free home office environment. Prior to remote approval, employees must certify the Acme Home Office Safety Checklist:
+- Electrical Safety: Surge protectors must be used for all computing equipment; no overloaded wall sockets or daisy-chained extension cords. Cables must be neatly bundled to prevent tripping hazards.
+- Ergonomics: Display screens should be positioned at eye level approximately arm's length away; chairs should provide adjustable lumbar support; elbows and knees should be positioned at approximately 90-degree angles during typing.
+- Emergency Preparedness: Smoke detectors and carbon monoxide alarms must be operational and tested periodically within the residence. An accessible first-aid kit and fire extinguisher must be maintained.
+- Confidentiality: Workspaces must prevent visual snooping from visitors, family members, or roommates when handling confidential customer data or source code.
+- Incident Reporting: Work-related injuries sustained in the home office during working hours must be reported within 24 hours to worker-comp@acmeglobal.com for workers' compensation assessment.
+
+## 6. Expectations for Video Calls and Professional Presence
+Video communications represent Acme's primary face-to-face medium for maintaining human connection and customer trust:
+- Video Camera Activation: Cameras are expected to be turned on during all interactive team meetings, 1-on-1s, client presentations, and all-hands town halls. If bandwidth constraints or temporary personal situations prevent video use, notify the meeting host via chat.
+- Background and Environment: Employees must use a clean, professional, non-distracting physical background or activate Acme-branded virtual background templates in Zoom.
+- Audio Quality: Headsets with dedicated noise-canceling microphones are strongly encouraged to minimize ambient household noise, pets, or outdoor street acoustics. Mute microphones when not actively speaking in group meetings exceeding four participants.
+- Meeting Etiquette: Refrain from parallel multitasking (such as checking unrelated emails or texting) during collaborative working sessions and team standups.
+
+Violations of this remote work policy or failure to maintain performance expectations may result in the revocation of remote work privileges and required return to the nearest physical office facility.

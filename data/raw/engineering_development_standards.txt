@@ -1,0 +1,63 @@
+# ACME GLOBAL TECHNOLOGIES - ENGINEERING DEVELOPMENT STANDARDS & OPERATIONAL RUNBOOK
+Standard Number: ENG-STD-2025-001
+Effective Date: January 1, 2025
+Approved by: Michael Rodriguez, Chief Technology Officer
+Target Audience: All Software Engineers, Site Reliability Engineers, DevOps, QA, and Data Engineers
+
+## 1. Engineering Philosophy and Core Principles
+At Acme Global Technologies, software engineering excellence is driven by code quality, automated validation, continuous feedback, architectural resilience, and shared accountability. We build cloud-native, horizontally scalable distributed services that process mission-critical workloads for enterprise customers worldwide. These standards articulate mandatory conventions governing our source control, testing, deployment, and operational resilience.
+
+## 2. Git Workflow and Branching Strategy
+Acme adheres to a modified Trunk-Based Development workflow using GitHub Enterprise:
+- Main Branch Protection: The `main` branch represents deployable code. Direct pushes, force pushes (`git push --force`), and unreviewed commits to `main` are strictly blocked by repository protection rules.
+- Feature Branch Naming: Developers create short-lived feature branches branching from latest `main`. Branch naming must follow standard prefixes:
+  * `feat/PROJ-1234-brief-description` (new features)
+  * `fix/PROJ-5678-bug-fix-title` (bug fixes)
+  * `refactor/PROJ-9012-cleanup` (technical debt or refactoring)
+  * `chore/PROJ-3456-dependency-upgrade` (tooling or dependency updates)
+- Pull Request (PR) Requirements:
+  * Branch Merging: All PRs must be merged using Squash and Merge to maintain a clean, linear git commit history on `main`.
+  * Mandatory Approvals: Every Pull Request strictly requires at least two (2) independent peer code reviews and approvals before merging is permitted. One approval must originate from an engineer outside the author's immediate sub-squad or designated repository CODEOWNER.
+  * PR Description: Must include an explicit problem summary, architectural rationale, risk assessment, testing steps verified, and a link to the corresponding Jira ticket.
+
+## 3. Code Review Guidelines and Reviewer Expectations
+Code reviews represent our primary vehicle for knowledge sharing and defect prevention:
+- Review Turnaround SLA: Reviewers must provide meaningful initial feedback on assigned PRs within twenty-four (24) business hours.
+- Review Scope: Reviewers must evaluate correctness, algorithmic complexity, boundary conditions, thread safety, database index efficiency, memory allocation patterns, backwards compatibility, and adherence to security standards (OWASP Top 10).
+- Constructive Tone: Critique the code, not the person. Use conventional review prefixes (e.g., `suggestion:`, `question:`, `nit:`, `blocking:`) to distinguish between mandatory defects and optional stylistic polish.
+
+## 4. Testing Requirements and Code Coverage Mandates
+High automated test coverage is vital to maintaining rapid delivery velocity without regression risks:
+- Minimum Code Coverage: All services and libraries must maintain a minimum automated test code coverage of eighty percent (80%). Pull Requests that cause overall repository line coverage to drop below 80% are automatically blocked by CI coverage gates (Codecov / SonarQube).
+- Test Pyramid Architecture:
+  * Unit Tests: Fast, deterministic tests verifying discrete classes and functions in isolation without network I/O or live external databases (utilize mocks and stubs).
+  * Integration Tests: Validate inter-service boundaries, ORM database transactions using testcontainers (PostgreSQL, Redis), and API request serialization.
+  * End-to-End (E2E) Smoke Tests: Synthetic journeys exercising critical end-user paths executed against staging clusters.
+- Performance & Flakiness: Tests must execute deterministically. Flaky tests must be quarantined, ticketed with high priority, and resolved within 48 hours.
+
+## 5. CI/CD Pipeline Standards (GitHub Actions)
+Continuous Integration and Delivery are automated through reusable GitHub Actions workflows:
+- Automated Verification Stages: Every PR push triggers:
+  1. Static Linting: Ruff / Black / Flake8 for Python; ESLint / Prettier for TypeScript; golangci-lint for Go.
+  2. Security Vulnerability Scan: Snyk dependency vulnerability analysis, Trivy container image scanning, and Gitleaks secret detection.
+  3. Automated Test Execution: Parallel test execution with code coverage reporting.
+  4. Container Build & Push: Multi-arch OCI Docker images tagged with the commit SHA and pushed to AWS ECR upon merge to `main`.
+
+## 6. Deployment Process: Staging, Canary, and Production
+Deployments are managed declaratively using ArgoCD with GitOps practices:
+- Stage 1: Staging Deployment: Automatically deployed upon merge to `main`. Automated synthetic integration suites run immediately to confirm health.
+- Stage 2: Canary Deployment: Deployed to a 5% traffic slice in Production for forty-five (45) minutes. Datadog monitors error rates, latency (p95/p99), and CPU saturation. If error rate exceeds 0.5% or p95 latency spikes by >20%, automated rollback is initiated immediately.
+- Stage 3: Full Production Rollout: If canary metrics remain stable, ArgoCD automatically scales the new release to 100% across the AWS EKS production cluster using rolling zero-downtime updates.
+- Deployment Freeze: Routine production deployments are prohibited on Friday afternoons after 2:00 PM local time and during designated company freeze windows unless addressing an active critical incident.
+
+## 7. On-Call Rotation and Incident Severity Management
+Operational availability is maintained through a disciplined 24/7 on-call rotation:
+- Rotation Structure: Squads manage weekly on-call shifts scheduled in PagerDuty, rotating every Tuesday at 10:00 AM local time. Primary on-call engineers are compensated with on-call stipends.
+- Incident Severity Levels and Response Expectations:
+  * SEV-1 (Critical Outage): Catastrophic production outage affecting core functionality for >25% of users. SLA: Page acknowledgement within 5 minutes. Incident Commander designated; war room opened immediately on Zoom/Slack `#incident-sev1`.
+  * SEV-2 (Major Disruption): High-impact service degradation or core feature failure with workaround available. SLA: Page acknowledgement within 15 minutes.
+  * SEV-3 (Minor Incident): Non-critical service flaw, localized errors, or performance degradation affecting a small subset of users. SLA: Response within 2 hours during business hours.
+  * SEV-4 (Low / Operational): Cosmetic UI bugs, minor internal errors, or non-urgent alerting thresholds. Addressed in regular sprint backlog.
+- Post-Mortem (Blameless RCA): Mandatory for all SEV-1 and SEV-2 incidents. A blameless root cause analysis (RCA) document must be published in Confluence within three (3) business days, identifying root causes, timeline, and corrective preventive action items.
+
+For architectural questions or pipeline enhancements, collaborate in `#engineering-platform` on Slack.

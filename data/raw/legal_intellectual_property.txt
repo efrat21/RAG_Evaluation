@@ -1,0 +1,60 @@
+# ACME GLOBAL TECHNOLOGIES - INTELLECTUAL PROPERTY & INVENTION POLICY
+Policy Code: POL-LEG-2025-004
+Effective Date: January 1, 2025
+Approved by: Global General Counsel & Head of Intellectual Property
+Contact: ip-legal@acmeglobal.com | Patent Inventions: inventions@acmeglobal.com
+
+## 1. Purpose and Ownership of Work Product
+Acme Global Technologies ("Acme") is a technology innovation leader whose value and competitive market advantage are founded upon proprietary software, specialized algorithms, trade secrets, trademarks, patents, and technical know-how. This Intellectual Property (IP) Policy sets forth clear expectations regarding the creation, protection, licensing, and commercialization of intellectual assets.
+
+### Complete Company Ownership of Work Product
+All intellectual property—including source code, system architectures, machine learning models, training datasets, documentation, product designs, patents, trademarks, copyrightable works, and inventions—conceived, created, reduced to practice, or authored by an employee or contractor during the term of their employment or engagement with Acme belongs exclusively and entirely to Acme Global Technologies. This principle ("work made for hire" under 17 U.S.C. § 101) applies whenever the work product is:
+- Created within the scope of the employee's duties or responsibilities;
+- Developed using Acme resources, facilities, laptops, servers, networks, or proprietary information;
+- Derived directly or indirectly from company business, research, or unreleased product concepts.
+Employees irrevocably assign all rights, title, and interest in such work product to Acme upon creation.
+
+## 2. Open Source Software (OSS) Usage Guidelines
+Acme actively supports open-source software collaboration; however, incorporating third-party open-source libraries into Acme commercial products introduces legal, licensing, and operational risks:
+- Pre-Approved Permissive Open-Source Licenses:
+  * MIT License
+  * Apache License 2.0
+  * BSD 2-Clause and BSD 3-Clause Licenses
+  * ISC License
+  Developers may freely incorporate libraries governed by these permissive licenses into Acme products, provided that all upstream copyright notices and attribution statements are faithfully preserved in documentation bundles.
+- Prohibited Viral / Copyleft Licenses:
+  * GNU General Public License (GPL v2, GPL v3)
+  * GNU Affero General Public License (AGPL v3)
+  * Lesser General Public License (LGPL v2/v3) when statically linked with Acme proprietary code
+  * Server Side Public License (SSPL)
+  Strict Prohibition: Under no circumstances may GPL, AGPL, or reciprocal copyleft code be copied, statically linked, or compiled into Acme commercial software distributions without explicit, written pre-authorization from the Legal Department. The viral nature of copyleft licenses risks legally forcing Acme to open-source its proprietary codebase to the general public.
+- Open Source Review Process: All new dependencies must be registered in the squad's repository manifest and pass automated software bill of materials (SBOM) scanning (Snyk / Black Duck) in GitHub CI/CD before PR approval.
+
+## 3. Patent Filing and Invention Disclosure Program
+To protect unique technical innovations and reward inventors, Acme maintains a formal Patent Incentive Program:
+- Invention Disclosure Form (IDF): If an engineer, data scientist, or product designer conceives a novel, non-obvious algorithm, system design, or user interface method, they should submit an IDF via https://inventions.acmeglobal.com. The IDF requires:
+  * Detailed description of the technical problem.
+  * Step-by-step description of the inventive solution and preferred embodiment.
+  * Block diagrams and flowcharts showing signal/data progression.
+  * Identification of all contributing co-inventors.
+- Patent Review Committee (PRC): Meets bi-monthly (chaired by the CTO and Chief IP Counsel) to evaluate submitted IDFs based on technical merit, commercial relevance, and patentability.
+- Inventor Financial Awards: To recognize employee innovation:
+  * $1,500 cash bonus upon formal filing of a provisional or non-provisional utility patent application with the USPTO / EPO.
+  * $3,000 cash bonus upon official patent issuance and grant by the patent office.
+  Awards are split equally among named co-inventors.
+
+## 4. Moonlighting and Outside Business Activities
+While Acme respects employees' personal interests during non-working hours, outside commercial activities must never compromise company interests or generate legal conflicts:
+- Prior Written Approval: Employees desiring to engage in secondary employment, consulting, freelance software development, or serve on advisory boards must submit an Outside Activity Disclosure Form to People Operations and Legal.
+- Strict Constraints:
+  * Outside activities must not utilize Acme laptops, software licenses, code repositories, or company time.
+  * Outside work must not compete with Acme's current product offerings or active research initiatives.
+  * Employees may not consult for direct competitors or major vendors under active commercial contract with Acme.
+
+## 5. Non-Disclosure Agreements (NDAs) and Confidentiality
+Safeguarding sensitive business information is a continuous legal obligation:
+- Mutual vs. One-Way NDAs: Before engaging in confidential discussions with prospective partners, vendor candidates, or acquisition targets, an Acme-standard Non-Disclosure Agreement (NDA) must be executed. Standard NDA templates are available via the Legal self-service portal.
+- Third-Party Information: Employees are strictly forbidden from bringing or using proprietary source code, internal documents, or trade secrets obtained from prior employers into Acme systems.
+- Ongoing Confidentiality: The obligation to preserve the secrecy of Acme confidential information and customer data survives the termination or separation of employment indefinitely.
+
+For patent evaluations, license exception requests, or NDA reviews, reach out to ip-legal@acmeglobal.com.

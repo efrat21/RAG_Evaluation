@@ -1,0 +1,57 @@
+# ACME GLOBAL TECHNOLOGIES - INFORMATION SECURITY POLICY
+Policy Code: POL-SEC-2025-001
+Classification: Internal
+Effective Date: January 1, 2025
+Owner: InfoSec & Cyber Defense Team
+Approver: Michael Rodriguez, Chief Technology Officer
+
+## 1. Executive Summary and Scope
+This Information Security Policy establishes mandatory security controls, operational procedures, and compliance standards to safeguard Acme Global Technologies' digital infrastructure, source repositories, employee credentials, customer datasets, and corporate assets. This policy applies to all full-time employees, contractors, interns, vendors, and third parties accessing Acme systems, networks, or computing equipment.
+
+## 2. Password and Credential Management
+Strong authentication is our frontline defense against unauthorized penetration and data exfiltration:
+- Length and Complexity: Passwords must contain a minimum of twelve (12) characters and must include at least one uppercase letter, one lowercase letter, one numeric digit, and one special symbol (e.g., !@#$%^&*). Passwords containing dictionary words, common sequences (123456, qwerty), or personal identifiers (employee name, birthdate) will be rejected by our identity provider (Okta).
+- Expiration and History: Passwords must be changed every ninety (90) calendar days. The system remembers the previous ten (10) passwords, preventing reuse of recent credentials.
+- Password Managers: Employees are prohibited from storing credentials in plaintext files, desktop sticky notes, or unencrypted spreadsheets. Acme licenses 1Password Enterprise for all staff to securely generate, store, and share credentials.
+
+## 3. Mandatory Multi-Factor Authentication (MFA)
+Multi-Factor Authentication (MFA) is strictly mandatory for accessing any Acme system, application, or network asset:
+- Supported Factors: Okta Verify push notifications with number matching, FIDO2 WebAuthn hardware security keys (YubiKeys), and TOTP authenticator applications (Google Authenticator).
+- Prohibited Factors: SMS-based text authentication and unencrypted voice calls are explicitly prohibited due to susceptibility to SIM-swapping and interception attacks.
+- Frequency: Re-authentication and step-up MFA prompts are triggered every 12 hours, upon signing in from a new geographic location or device, or when accessing highly sensitive internal consoles (AWS Management Console, Production Kubernetes clusters, Vault secrets).
+
+## 4. Virtual Private Network (VPN) and Remote Access
+Remote connections to internal corporate networks, non-public microservices, staging environments, and database clusters require an active, encrypted tunnel:
+- GlobalProtect VPN / WireGuard Gateway: All remote sessions accessing corporate resources must connect through the Acme GlobalProtect VPN gateway with continuous posture validation enabled.
+- Split Tunneling: Split tunneling is restricted; all traffic bound for corporate IP subnets (10.0.0.0/8, 172.16.0.0/12) and cloud VPCs is encrypted and routed through centralized threat inspection firewalls.
+- Public Wi-Fi Warning: Direct access to company systems over unencrypted public Wi-Fi networks (airports, coffee shops, hotel lobbies) without active VPN tunneling is strictly forbidden.
+
+## 5. Approved Software and Application Catalog
+Only software vetted and approved by InfoSec may be downloaded or installed on corporate hardware:
+- Approved Standard Applications: Microsoft Office 365, Google Workspace, Slack, Zoom, Jira, Confluence, GitHub Enterprise, Visual Studio Code, IntelliJ IDEA, Docker Desktop, AWS CLI, Postman Enterprise.
+- Prohibited Software: Unauthorized peer-to-peer file-sharing applications (BitTorrent), unapproved consumer cloud sync utilities (Dropbox personal, iCloud Drive for work data), unauthorized generative AI tools that train on user inputs without corporate DPAs, and any unlicensed commercial binaries.
+- Software Installation: Corporate laptops are governed by Jamf (macOS) and Microsoft Intune (Windows). Root or administrative installation privileges require elevation via our Self-Service IT portal with an audited ticket justification.
+
+## 6. Corporate Data Classification Framework
+All data created, processed, or stored at Acme must be classified into one of four distinct tiers:
+1. Public (Tier 1): Information approved for unrestricted public distribution, such as press releases, marketing collateral, and published job postings. No confidentiality controls required.
+2. Internal (Tier 2): General internal business communications, internal organization charts, corporate newsletters, and standard operational runbooks. Requires corporate authentication to access.
+3. Confidential (Tier 3): Sensitive company and partner data, including unreleased product roadmaps, employee compensation data, detailed architectural schemas, source code, and customer contracts. Access restricted to individuals with a legitimate business need. Must be encrypted in transit (TLS 1.3) and at rest (AES-256).
+4. Restricted (Tier 4): Highly sensitive proprietary information and regulated assets, including customer PII/PHI, payment credentials, database encryption keys, master secret credentials, and legal litigation documents. Requires multi-party authorization, hardware-token MFA, strict role-based access control (RBAC), and immutable audit logging.
+
+## 7. Security Incident Response and Reporting Procedure
+Immediate detection and containment of security anomalies is essential to preventing widespread disruption:
+- Obligation to Report: Any employee who suspects or discovers a lost laptop, compromised password, phishing interaction, anomalous endpoint alert, or unauthorized data disclosure must report the event immediately.
+- Escalation Channels:
+  * Primary: Email security@acmeglobal.com
+  * Slack: Post immediately in the monitored channel `#security-incidents`
+  * Urgent Phone Hotline: Call +1 (888) 555-SECU (24/7 coverage)
+- SLA: InfoSec triage acknowledges incident reports within 15 minutes for critical severity events. Never attempt to conduct independent forensic investigations or power down suspected infected systems unless instructed by InfoSec.
+
+## 8. Bring Your Own Device (BYOD) Policy
+While primary engineering and operational tasks must be conducted exclusively on Acme-managed laptops, limited mobile access to company communications (Slack, corporate email, calendar) is permitted on personal smartphones under the following conditions:
+- Mandatory MDM Enrollment: Mobile devices must enroll in Acme MobileIron / Intune MDM, enforcing a 6-digit device passcode, full device encryption, automated security patches, and remote wipe capabilities for corporate data partitions.
+- Jailbreak / Root Prohibition: Devices with altered firmware (jailbroken iOS or rooted Android) are strictly blocked from corporate network admission.
+- Data Isolation: Copying corporate data or email attachments from managed applications into personal smartphone apps or personal cloud accounts is strictly prevented by containerization policies.
+
+Compliance with this Information Security Policy is mandatory. Non-compliance compromises company and customer safety and may result in disciplinary action up to termination and civil or criminal liability.

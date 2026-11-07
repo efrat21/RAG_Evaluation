@@ -1,0 +1,63 @@
+# ACME GLOBAL TECHNOLOGIES - CORPORATE MISSION, VALUES & 2025 STRATEGIC CHARTER
+Document Reference: STRAT-EXEC-2025-001
+Effective Date: January 1, 2025
+Author: Sarah Chen, Chief Executive Officer
+Target Audience: All Global Employees, Investors, and Strategic Partners
+
+## 1. Corporate Mission and Vision
+- Corporate Mission: To empower every enterprise organization and knowledge worker to unlock collective intelligence, discover actionable insights, and make high-confidence decisions through intuitive, trusted artificial intelligence.
+- Long-Term Vision: A business ecosystem where organizational knowledge is effortlessly accessible, contextualized in real time, and completely secure—eliminating corporate information silos and accelerating global innovation.
+
+## 2. Core Corporate Values: The "4 I's"
+Our organizational culture and daily decision-making are anchored in four non-negotiable core values:
+1. Innovation:
+   * We continuously challenge legacy paradigms, embrace calculated technical risks, and pioneer cutting-edge solutions in distributed systems, vector retrieval, and generative AI. We treat failures as vital learning loops and celebrate creative breakthroughs.
+2. Integrity:
+   * We operate with unwavering transparency, rigorous ethical standards, and absolute fidelity to our commitments. We protect customer privacy and data security above all else. In every internal debate and external commercial agreement, we choose the principled path over short-term expediency.
+3. Inclusion:
+   * We believe diverse perspectives cultivate superior engineering architectures and stronger corporate resilience. We foster an environment where people of all backgrounds, identities, cultures, and communication styles are respected, empowered, and provided equitable opportunities to lead.
+4. Impact:
+   * We focus obsessively on generating measurable value for our customers, our colleagues, and our communities. Effort without tangible outcomes does not suffice; we measure success by the positive transformation our technology delivers in daily workflows.
+
+## 3. 2025 Strategic Pillars
+As we embark on fiscal year 2025, Acme has aligned its investments, hiring plans, and engineering roadmaps across three foundational strategic pillars:
+
+### Pillar 1: AI-First Product Development
+- Objective: Transition from conventional keyword search and static knowledge repositories to an agentic, multi-modal knowledge assistant capable of complex synthesis, semantic reasoning, and workflow automation.
+- Key Initiatives:
+  * Deploy state-of-the-art hybrid retrieval combining dense vector similarity (Qdrant) and sparse lexical search (BM25).
+  * Build an automated continuous LLM evaluation framework (RAGAS) tracking retrieval precision, answer faithfulness, and hallucination reduction.
+  * Launch conversational knowledge agents integrated seamlessly into Slack, Microsoft Teams, and IDEs.
+
+### Pillar 2: International Market Expansion
+- Objective: Scale our enterprise presence across the EMEA and APAC regions, accelerating international annual recurring revenue (ARR) growth to represent 40% of corporate revenue.
+- Key Initiatives:
+  * Expand our London and Singapore operational hubs, doubling local field engineering, solutions architecture, and customer success teams.
+  * Achieve full data sovereignty compliance across EU and APAC regions by deploying regional AWS multi-tenant clusters in Frankfurt (`eu-central-1`) and Tokyo (`ap-northeast-1`).
+  * Introduce multilingual document ingestion capabilities supporting German, French, Japanese, and Mandarin Chinese.
+
+### Pillar 3: Enterprise Platform Scalability & Reliability
+- Objective: Harden platform infrastructure to effortlessly support Tier-1 Global 2000 enterprise customers with massive document catalogs and strict SLA mandates.
+- Key Initiatives:
+  * Maintain our 99.9% uptime SLA across all public cloud services.
+  * Optimize ingestion pipeline throughput to process >10,000 document pages per minute with sub-second vector indexing latencies.
+  * Achieve SOC 2 Type II re-certification, ISO 27001 renewal, and FedRAMP Moderate readiness milestones.
+
+## 4. The OKR Framework (Objectives and Key Results)
+Acme executes strategy through a disciplined, transparent Objectives and Key Results (OKR) framework operating on a quarterly cycle:
+- Alignment Hierarchy:
+  1. Company OKRs: Formulated by the Executive Leadership Team (ELT) and approved by the Board of Directors, establishing corporate annual and quarterly imperatives.
+  2. Department OKRs: Authored by VPs and Directors (e.g., Engineering, Product, Sales) directly aligning with Company OKRs.
+  3. Squad / Team OKRs: Defined collaboratively by squad leads, product managers, and team members during quarterly planning offsites.
+  4. Individual OKRs: Personal performance and growth commitments established between employees and managers during 1-on-1 coaching sessions.
+- Cadence and Scoring:
+  * Week 1 of Quarter: Finalization and publication of team OKRs in our tracking system (Workboard).
+  * Mid-Quarter (Week 6): Formal progress check-in, tracking leading metrics and adjusting unviable tactics.
+  * End-of-Quarter (Week 12): Blameless scoring on a 0.0 to 1.0 scale. Target success score is between 0.7 and 0.8 (reflecting ambitious, stretch targets). Consistent 1.0 scores indicate goals were insufficiently ambitious.
+
+## 5. Company History and Key Milestones
+- 2021: Founded in New York City by Sarah Chen and Michael Rodriguez with an initial Seed round of $4.5M led by premier enterprise venture funds. Released prototype semantic code search engine.
+- 2022: Closed $18M Series A financing. Opened London European engineering hub. Launched first-generation enterprise document indexing platform for cloud-native software teams.
+- 2023: Closed $45M Series B financing. Expanded global workforce to 250 employees. Established APAC regional office in Singapore and cybersecurity center in Tel Aviv. Surpassed 100 enterprise customers.
+- 2024: Surpassed $35M in Annual Recurring Revenue (ARR). Deployed AI-powered Enterprise Knowledge Assistant across Global 2000 customers. Reached 500 global employees. Awarded "Top Enterprise AI Innovator of the Year".
+- 2025: Current charter focused on agentic AI, global data sovereignty, and reaching profitability while scaling to $75M ARR.

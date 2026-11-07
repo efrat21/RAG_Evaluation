@@ -1,0 +1,52 @@
+# ACME GLOBAL TECHNOLOGIES - EMPLOYEE HANDBOOK
+Version: 2025.1
+Last Updated: January 15, 2025
+Approved by: Jennifer Walsh, Chief Human Resources Officer
+
+## 1. Introduction and Welcome
+Welcome to Acme Global Technologies ("Acme" or the "Company"). This Employee Handbook is designed to introduce you to our culture, operating practices, day-to-day policies, and expectations. Whether you are joining our headquarters in New York City or one of our regional tech hubs in London, Singapore, or Tel Aviv, our commitment is to provide an inclusive, stimulating, and respectful environment where top talent can deliver exceptional customer experiences. This handbook applies to all regular full-time and part-time employees.
+
+## 2. Standard Work Hours and Core Schedules
+Our standard working hours are 40 hours per week for full-time employees, Monday through Friday. While flexibility is embraced, employees must observe regional core hours between 10:00 AM and 3:00 PM local time to facilitate collaboration, synchronous team standups, customer engagements, and cross-functional meetings. Lunch periods are generally 60 minutes and unpaid. Non-exempt employees must accurately log hours worked through our internal HR portal (Workday) and obtain prior written manager approval for any overtime beyond 40 hours in a given workweek.
+
+## 3. Remote and Hybrid Work Policy
+Acme operates on a flexible hybrid model. Unless hired under an explicit fully remote contract, employees are expected to spend at least two days per week in their local Acme office. Hybrid eligibility begins immediately, while transitioning to fully remote work requires a minimum of three months of successful tenure and approval from both the squad manager and department vice president. All remote team members must maintain a distraction-free home workspace with adequate broadband internet.
+
+## 4. Paid Time Off (PTO) Policy
+Acme provides a generous Paid Time Off (PTO) allotment designed to support work-life integration, rest, and personal pursuits.
+- All full-time employees accrue 25 days of paid vacation per calendar year (accruing at 2.08 days per month).
+- Employees may carry over a maximum of 5 unused PTO days into the following calendar year; any additional unused accrued PTO past December 31 will expire unless local statutory regulations mandate otherwise.
+- PTO requests exceeding three consecutive business days must be submitted through Workday at least two weeks in advance.
+- In addition to standard PTO, Acme recognizes 11 scheduled public holidays based on regional office territory.
+
+## 5. Sick Leave and Medical Absences
+Full-time employees receive 10 paid sick days annually, available at the start of each calendar year. Paid sick leave may be utilized for personal illness, medical appointments, preventative healthcare, or caring for an immediate family member. If an employee is absent due to illness for more than three consecutive working days, a formal note from a certified healthcare provider must be provided to People Operations (peopleops@acmeglobal.com). Sick leave does not roll over from year to year and is not paid out upon separation of employment.
+
+## 6. Code of Conduct and Professional Integrity
+Acme expects all team members to adhere to the highest ethical standards. All employees must:
+- Act honestly and with integrity in all company-related interactions.
+- Avoid conflicts of interest, including secondary employment or personal business ventures that compete with or detract from Acme responsibilities.
+- Safeguard confidential and proprietary information, intellectual property, and trade secrets.
+- Comply with all applicable local, national, and international laws, including export controls and insider trading restrictions.
+
+## 7. Anti-Harassment and Anti-Discrimination Policy
+Acme maintains a strict zero-tolerance policy regarding harassment, discrimination, bullying, or retaliation of any form. We prohibit discrimination based on race, color, religion, sex, sexual orientation, gender identity or expression, national origin, age, disability, genetic information, veteran status, or any other characteristic protected by law.
+- Any form of unwelcome conduct—verbal, physical, visual, or digital—that creates an intimidating, hostile, or offensive working environment will result in disciplinary action up to and including immediate termination.
+- Reporting Procedure: Incidents should be reported promptly to your direct manager, People Operations, or via our anonymous Ethics Hotline at ethics.acmeglobal.com. Retaliation against any employee reporting concerns in good faith is strictly prohibited and subject to immediate dismissal.
+
+## 8. Dress Code Guidelines
+Acme adheres to a Business Casual dress standard. Employees are expected to dress appropriately and comfortably for their roles. In office settings, jeans, casual collared shirts, blouses, sweaters, and clean sneakers are standard. For external client presentations, executive briefings, or regulatory audits, smart business attire (blazers, dress shoes, tailored trousers, or dresses) is expected. When joining customer video conferences from home, attire should be presentable, professional, and neat.
+
+## 9. Performance Management: Annual and Mid-Year Reviews
+Employee growth and accountability are fostered through structured performance evaluations:
+- Mid-Year Performance Check-in (July): Focuses on progress toward annual Objectives and Key Results (OKRs), developmental feedback, mentorship needs, and goal realignment.
+- Annual Performance Review (December): A comprehensive evaluation assessing goal achievement, behavioral competencies, core value demonstrations, and technical velocity. Ratings range from Unsatisfactory (1) to Exceeds Expectations (5).
+- Compensation adjustments, equity refreshes, and annual bonuses are determined in January following the December review cycle.
+
+## 10. Employee Onboarding Process
+New hires participate in a 90-day structured onboarding program:
+- Week 1: IT equipment provisioning, security compliance training, benefits enrollment, HR orientation, and meeting your designated onboarding buddy.
+- Month 1: Completion of role-specific tool certifications, systems access walkthroughs, and delivery of initial small-scope task deliverables.
+- Month 3: Formal 90-day review with direct manager to evaluate role proficiency, team integration, and establish long-term individual OKRs.
+
+For any questions regarding this handbook, contact the People Operations team at peopleops@acmeglobal.com.
