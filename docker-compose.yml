@@ -1,0 +1,170 @@
+services:
+  ollama:
+    image: ollama/ollama:0.5.4
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    entrypoint:
+      - "/bin/sh"
+      - "-c"
+      - |
+        /bin/ollama serve &
+        pid=$$!
+        echo "Waiting for Ollama service to start..."
+        until ollama list > /dev/null 2>&1; do
+          sleep 2
+        done
+        echo "Pulling llama3.1:8b model..."
+        ollama pull llama3.1:8b
+        echo "Pulling nomic-embed-text model..."
+        ollama pull nomic-embed-text
+        echo "Models downloaded successfully. Ollama server ready."
+        wait $$pid
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+
+  qdrant:
+    image: qdrant/qdrant:v1.12.4
+    container_name: qdrant
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    healthcheck:
+      test:
+        - CMD
+        - bash
+        - -c
+        - >-
+          exec 3<>/dev/tcp/127.0.0.1/6333 &&
+          printf 'GET /readyz HTTP/1.1\r\nHost: localhost\r\nConnection: close\r\n\r\n' >&3 &&
+          IFS= read -r status <&3 &&
+          [[ "$$status" == *"200"* ]]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+
+  api:
+    build: ./services/api
+    container_name: api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - ollama
+      - qdrant
+      - otel-collector
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+      - sqlite_data:/app/db
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/health || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    restart: unless-stopped
+
+  ingestion:
+    build: ./services/ingestion
+    container_name: ingestion
+    ports:
+      - "8001:8001"
+    depends_on:
+      - ollama
+      - qdrant
+      - otel-collector
+      - api
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+
+  evaluation:
+    build: ./services/evaluation
+    container_name: evaluation
+    ports:
+      - "8002:8002"
+    depends_on:
+      - api
+      - prometheus
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.114.0
+    container_name: otel-collector
+    ports:
+      - "4317:4317"
+      - "4318:4318"
+      - "8888:8888"
+      - "8889:8889"
+    volumes:
+      - ./otel/otel-collector.yml:/etc/otelcol-contrib/config.yaml
+    command: ["--config=/etc/otelcol-contrib/config.yaml"]
+    restart: unless-stopped
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.63.0
+    container_name: jaeger
+    ports:
+      - "16686:16686"
+      - "14250:14250"
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:v3.0.0
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./otel/prometheus.yml:/etc/prometheus/prometheus.yml
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:11.3.1
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+      - jaeger
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin}
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_AUTH_ANONYMOUS_ENABLED=false
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
+    restart: unless-stopped
+
+volumes:
+  ollama_data:
+  qdrant_data:
+  grafana_data:
+  sqlite_data:
